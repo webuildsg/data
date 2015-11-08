@@ -1,0 +1,39 @@
+{
+  "name": "archives",
+  "version": "1.0.0",
+  "description": "store snapshot data for webuild.sg for events and repos",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "status": "notes",
+    "test": "npm test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webuildsg/archives.git"
+  },
+  "keywords": [
+    "archives",
+    "data",
+    "events",
+    "repos",
+    "webuild.sg",
+    "developer"
+  ],
+  "author": "Sayanee Basu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/webuildsg/archives/issues"
+  },
+  "homepage": "https://github.com/webuildsg/archives#readme",
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "mocha": "^2.3.3",
+    "notes": "0.0.4"
+  },
+  "dependencies": {
+    "moment-timezone": "^0.4.1"
+  }
+}
