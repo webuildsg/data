@@ -8,7 +8,7 @@
   },
   "scripts": {
     "status": "notes",
-    "test": "npm test"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
