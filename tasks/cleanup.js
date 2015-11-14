@@ -13,7 +13,7 @@ function listFilePaths(type) {
 
   allFiles.forEach(function(file) {
     if (path.extname(file) === '.json') {
-      jsonFilePaths.push('../' + type + '/v1/' + file);
+      jsonFilePaths.push('./' + type + '/v1/' + file);
     }
   })
 
@@ -42,9 +42,20 @@ function getCurrentDayData(data, type) {
 // TODO: cleanup data
 function cleanup(type) {
   listFilePaths(type).forEach(function(file, index) {
-    getCurrentDayData(require(file), type);
+    var data = JSON.stringify(getCurrentDayData(require('.' + file), type));
+
+    fs.writeFile(file, data, function(err) {
+      if(err) {
+        return console.log(err);
+      }
+
+      console.log(file + ' was saved');
+    });
   })
 }
+
+cleanup('events');
+cleanup('repos');
 
 exports.listFilePaths = listFilePaths;
 exports.getCurrentDayData = getCurrentDayData;
