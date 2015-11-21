@@ -24,7 +24,7 @@ function getData() {
 
   utilsLib.listFilePaths(type).forEach(function(file, index) {
     var data = require('.' + file);
-    console.log(data.meta.generated_at + '  Day: ' + getDayOfTheWeek(data.meta.generated_at))
+    // console.log(data.meta.generated_at + '  Day: ' + getDayOfTheWeek(data.meta.generated_at))
     yData[ getDayOfTheWeek(data.meta.generated_at) ] += data.meta.total_events;
   })
 

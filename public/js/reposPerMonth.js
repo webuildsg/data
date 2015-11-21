@@ -8,11 +8,11 @@
   var y = d3.scale.linear().domain([0, 130]).range([h, 0]);
   var line = d3.svg.line()
     .x(function(d,i) {
-      console.log('Plotting X value for data point: ' + d + ' using index: ' + i + ' to be at: ' + x(i) + ' using our xScale.');
+      // console.log('Plotting X value for data point: ' + d + ' using index: ' + i + ' to be at: ' + x(i) + ' using our xScale.');
       return x(i);
     })
     .y(function(d) {
-      console.log('Plotting Y value for data point: ' + d + ' to be at: ' + y(d) + " using our yScale.");
+      // console.log('Plotting Y value for data point: ' + d + ' to be at: ' + y(d) + " using our yScale.");
       return y(d);
     })
 

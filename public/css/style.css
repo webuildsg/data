@@ -20,3 +20,7 @@ path {
   fill: none;
   stroke: #000;
 }
+
+text {
+  color: green;
+}
