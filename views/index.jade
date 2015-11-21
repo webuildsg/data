@@ -38,8 +38,10 @@ html(lang='en')
       header
         .container
           h1 we build!
+          p(style="text-align:center") *work in progress*
           h2
             small Using data and graphs to inspire <strong>variety</strong>, <strong>openness</strong> and <strong>projects</strong> for the design and engineering community
+
       footer
         .container
           p All graphs are generated based on <br> <a href="https://github.com/webuildsg/data/tree/gh-pages/data/events/v1">open events data</a> and <a href="https://github.com/webuildsg/data/tree/gh-pages/data/repos/v1">open source repos data</a>
@@ -48,10 +50,18 @@ html(lang='en')
         h3 events per week
         <div id="events-per-week" class="aGraph"></div>
 
+        h3 repos per week
+        <div id="repos-per-week" class="aGraph"></div>
+
         h3 events per month
         <div id="events-per-month" class="aGraph"></div>
 
+        h3 repos per month
+        <div id="repos-per-month" class="aGraph"></div>
+
     script(src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.9/d3.min.js")
     script(src="public/js/eventsPerWeek.js")
+    script(src="public/js/reposPerWeek.js")
     script(src="public/js/eventsPerMonth.js")
+    script(src="public/js/reposPerMonth.js")
 
