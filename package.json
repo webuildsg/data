@@ -7,6 +7,8 @@
     "test": "test"
   },
   "scripts": {
+    "build": "jade views/index.jade -o . -P",
+    "clean": "rm index.html",
     "status": "notes",
     "test": "mocha"
   },
@@ -30,6 +32,7 @@
   "homepage": "https://github.com/webuildsg/archives#readme",
   "devDependencies": {
     "chai": "^3.4.1",
+    "jade": "^1.11.0",
     "mocha": "^2.3.3",
     "notes": "0.0.4"
   },
