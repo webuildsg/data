@@ -25,8 +25,6 @@ function getData() {
     var data = require('.' + file);
 
     data.events.forEach(function(ev) {
-      console.log(ev.group_name)
-
       if (groups.indexOf(ev.group_name) < 0) {
         groups.push(ev.group_name)
         answer.push({
@@ -50,7 +48,10 @@ function getData() {
     }
   })
 
-  console.log(replies);
+  fs.writeFile('public/data/events-per-group.json', JSON.stringify(replies), function (err) {
+    if (err) throw err;
+    console.log('File public/data/events-per-group.json saved!');
+  });
 }
 
 getData();

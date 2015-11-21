@@ -17,7 +17,6 @@ function getData() {
     var data = require('.' + file);
 
     data.repos.forEach(function(repo) {
-
       if (languages.indexOf(repo.language) < 0 && repo.language !== null) {
         answer.push({
           language: repo.language,
@@ -34,7 +33,10 @@ function getData() {
     })
   })
 
-  console.log(answer);
+  fs.writeFile('public/data/repos-per-programming.json', JSON.stringify(answer), function (err) {
+    if (err) throw err;
+    console.log('File public/data/repos-per-programming.json is saved!');
+  });
 }
 
 getData();
