@@ -10,7 +10,7 @@
     "build": "jade views/index.jade -o . -P",
     "clean": "rm index.html",
     "status": "notes",
-    "test": "mocha"
+    "test": "NODE_ENV=test mocha"
   },
   "repository": {
     "type": "git",

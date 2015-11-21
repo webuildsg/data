@@ -8,12 +8,12 @@ var path = require('path');
 var moment = require('moment-timezone');
 
 function listFilePaths(type) {
-  var allFiles = fs.readdirSync('./' + type + '/v1');
+  var allFiles = fs.readdirSync('./data/' + type + '/v1');
   var jsonFilePaths = [];
 
   allFiles.forEach(function(file) {
     if (path.extname(file) === '.json') {
-      jsonFilePaths.push('./' + type + '/v1/' + file);
+      jsonFilePaths.push('./data/' + type + '/v1/' + file);
     }
   })
 
@@ -44,18 +44,17 @@ function cleanup(type) {
   listFilePaths(type).forEach(function(file, index) {
     var data = JSON.stringify(getCurrentDayData(require('.' + file), type));
 
-    fs.writeFile(file, data, function(err) {
-      if(err) {
-        return console.log(err);
-      }
+    if (process.env !== 'test') {
+      fs.writeFile(file, data, function(err) {
+        if(err) {
+          return console.log(err);
+        }
 
-      console.log(file + ' was saved');
-    });
+        console.log(file + ' was saved');
+      });
+    }
   })
 }
-
-cleanup('events');
-cleanup('repos');
 
 exports.listFilePaths = listFilePaths;
 exports.getCurrentDayData = getCurrentDayData;

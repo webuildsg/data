@@ -23,12 +23,6 @@ describe('Cleanup', function() {
         expect(todayEventsNum).to.be.below(allEventsNum);
       })
     })
-
-    describe('#cleanup', function() {
-      it('returns events for the upcoming day', function() {
-        cleanupLib.cleanup('events');
-      })
-    })
   })
 
   describe('when the data is repos', function() {
