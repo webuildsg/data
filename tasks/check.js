@@ -151,8 +151,8 @@ function check(type) {
   })
 }
 
-check('events');
-check('repos');
+// check('events');
+// check('repos');
 
 exports.check = check;
 exports.metaNode = metaNode;

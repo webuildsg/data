@@ -6,10 +6,11 @@
 var fs = require('fs');
 var path = require('path');
 var moment = require('moment-timezone');
+var utilsLib = require('./utils');
 
-module.exports = function(type) {
-  listFilePaths(type).forEach(function(file, index) {
-    var data = JSON.stringify(getCurrentDayData(require('.' + file), type));
+function cleanup(type) {
+  utilsLib.listFilePaths(type).forEach(function(file, index) {
+    var data = JSON.stringify(utilsLib.getCurrentDayData(require('.' + file), type));
 
     if (process.env !== 'test') {
       fs.writeFile(file, data, function(err) {
@@ -22,3 +23,5 @@ module.exports = function(type) {
     }
   })
 }
+
+// cleanup('events');
