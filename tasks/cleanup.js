@@ -25,3 +25,4 @@ function cleanup(type) {
 }
 
 // cleanup('events');
+// cleanup('repos');
