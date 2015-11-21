@@ -22,6 +22,7 @@
     <meta property="og:description" content="Using data and graphs to inspire variety, openness and projects!">
     <meta property="og:type" content="website">
     <link rel="stylesheet" href="https://webuild.sg/public/css/style.css">
+    <link rel="stylesheet" href="public/css/style.css">
     <link rel="apple-touch-icon" href="public/apple-touch-icon.png">
     <link rel="apple-touch-icon" sizes="72x72" href="public/apple-touch-icon-72x72-precomposed.png">
     <link rel="apple-touch-icon" sizes="114x114" href="public/apple-touch-icon-114x114-precomposed.png">
@@ -42,6 +43,13 @@
           <p>All graphs are generated based on <br> <a href="https://github.com/webuildsg/data/tree/gh-pages/data/events/v1">open events data</a> and <a href="https://github.com/webuildsg/data/tree/gh-pages/data/repos/v1">open source repos data</a></p>
         </div>
       </footer>
+      <div class="container">
+        <h3>events per week</h3><div id="events-per-week" class="aGraph"></div>
+        <h3>events per month</h3><div id="events-per-month" class="aGraph"></div>
+      </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.9/d3.min.js"></script>
+    <script src="public/js/eventsPerWeek.js"></script>
+    <script src="public/js/eventsPerMonth.js"></script>
   </body>
 </html>
