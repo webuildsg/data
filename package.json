@@ -9,7 +9,7 @@
   "scripts": {
     "build": "jade views/index.jade -o . -P",
     "clean": "rm index.html",
-    "status": "notes",
+    "status": "notes && npm outdated",
     "test": "NODE_ENV=test mocha"
   },
   "repository": {

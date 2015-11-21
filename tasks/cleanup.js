@@ -7,7 +7,6 @@ var fs = require('fs');
 var path = require('path');
 var moment = require('moment-timezone');
 
-// TODO: cleanup data
 module.exports = function(type) {
   listFilePaths(type).forEach(function(file, index) {
     var data = JSON.stringify(getCurrentDayData(require('.' + file), type));
