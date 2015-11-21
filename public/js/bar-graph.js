@@ -1,15 +1,13 @@
 var w = 800,
 h = 500;
 
-
-d3.json('public/data/repos-per-programming.json', function(error, data) {
+function drawGraph(type, data, attr) {
   var max_n = 0;
-
   for (var d in data) {
     max_n = Math.max(data[d].n, max_n);
   }
 
-  var svg = d3.select('#repos-per-programming')
+  var svg = d3.select('#' + type)
     .append('svg')
     .attr('width', w)
     .attr('height', h);
@@ -39,16 +37,33 @@ d3.json('public/data/repos-per-programming.json', function(error, data) {
     .enter()
     .append('text')
     .attr('class', function(d, i) {
-      return 'language ' + d.language;
+      return attr + ' ' + d[ attr ];
     })
     .attr('x', 5)
     .attr('y', function(d, i) {
       return dy*i + 15;
     })
     .text( function(d) {
-      return d.language + ' (' + d.n  + ')';
+      return d[ attr ] + ' (' + d.n  + ')';
     })
     .attr('font-size', '15px')
     .attr('fill', 'green')
     .style('font-weight', 'bold')
-});
+}
+
+[
+  'repos-per-programming',
+  'events-per-group'
+].forEach(function(type) {
+  d3.json('public/data/' + type + '.json', function(error, data) {
+    if (error) {
+      console.log(error)
+    }
+
+    var attr = type === 'repos-per-programming' ? 'language': 'group';
+    drawGraph(type, data, attr);
+  });
+})
+
+
+
