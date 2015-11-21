@@ -10,7 +10,8 @@
     "build": "jade views/index.jade -o . -P && node graphs/reposPerProgramming.js && node graphs/eventsPerGroup.js",
     "clean": "rm index.html",
     "status": "notes && npm outdated",
-    "test": "NODE_ENV=test mocha"
+    "test": "NODE_ENV=test mocha",
+    "start": "python -m SimpleHTTPServer 8000"
   },
   "repository": {
     "type": "git",
