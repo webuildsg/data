@@ -41,7 +41,6 @@ function getData() {
     return 0;
   })
 
-  console.log(answer)
   utilsLib.publishData('repos-per-programming', answer);
 }
 
