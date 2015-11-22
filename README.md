@@ -1,5 +1,7 @@
 #data.webuild.sg
 
+[![Dependency Status](https://gemnasium.com/webuildsg/data.svg)](https://gemnasium.com/webuildsg/data)
+
 > Using data and graphs to inspire variety, openness and projects for the design and engineering community in Singapore
 
 ##install
