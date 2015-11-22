@@ -38,5 +38,13 @@ function getCurrentDayData(data, type) {
   return answer;
 }
 
+function publishData(name, data) {
+  fs.writeFile('public/data/' + name + '.json', JSON.stringify(data), function (err) {
+    if (err) throw err;
+    console.log('File public/data/' + name + '.json saved!');
+  });
+}
+
 exports.listFilePaths = listFilePaths;
 exports.getCurrentDayData = getCurrentDayData;
+exports.publishData = publishData;

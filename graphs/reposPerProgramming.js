@@ -33,10 +33,7 @@ function getData() {
     })
   })
 
-  fs.writeFile('public/data/repos-per-programming.json', JSON.stringify(answer), function (err) {
-    if (err) throw err;
-    console.log('File public/data/repos-per-programming.json is saved!');
-  });
+  utilsLib.publishData('repos-per-programming', answer);
 }
 
 getData();

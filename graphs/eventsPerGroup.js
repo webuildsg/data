@@ -48,10 +48,7 @@ function getData() {
     }
   })
 
-  fs.writeFile('public/data/events-per-group.json', JSON.stringify(replies), function (err) {
-    if (err) throw err;
-    console.log('File public/data/events-per-group.json saved!');
-  });
+  utilsLib.publishData('events-per-group', replies);
 }
 
 getData();
