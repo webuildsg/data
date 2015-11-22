@@ -15,6 +15,7 @@ function getData() {
   var type = 'events';
   var yData = [];
   var currentWeek;
+  var answer = {};
 
   utilsLib.listFilePaths(type).forEach(function(file, index) {
     var data = require('.' + file);
@@ -27,7 +28,11 @@ function getData() {
     }
   })
 
-  console.log(yData);
+  answer = {
+    events: yData
+  };
+
+  utilsLib.publishData('events-per-week', answer);
 }
 
 getData();
