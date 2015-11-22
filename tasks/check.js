@@ -133,29 +133,41 @@ function checkTotal(data, type) {
 }
 
 function check(type) {
+  var failedCheck = 0;
+
   utilsLib.listFilePaths(type).forEach(function(file, index) {
     var data = require('.' + file);
 
     if(!metaNode(data)) {
+      failedCheck++;
       console.log(file + ' does not have the right meta node')
     }
 
     if(!checkTotal(data, type)) {
+      failedCheck++;
       console.log(file + ' does not have the correct total number of ' + type);
     }
 
     if (type === 'events') {
       if(!eventsNode(data)) {
+        failedCheck++;
         console.log(file + ' does not have the right data node')
       }
     }
 
     if (type === 'repos') {
       if(!reposNode(data)) {
+        failedCheck++;
         console.log(file + ' does not have the right data node')
       }
     }
   })
+
+  if(failedCheck === 0) {
+    console.log('All ' + type + ' data is in the correct condition!')
+  } else {
+    console.log('There was a total of ' + failedCheck + 'errors in the data files.')
+  }
 }
 
 check('events');
