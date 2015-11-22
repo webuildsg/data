@@ -1,21 +1,22 @@
 {
-  "name": "archives",
+  "name": "data.webuild.sg",
   "version": "1.0.0",
   "description": "store snapshot data for webuild.sg for events and repos",
   "main": "index.js",
   "directories": {
     "test": "test"
   },
+  "private": true,
   "scripts": {
     "build": "jade views/index.jade -o . -P && node graphs/reposPerProgramming.js && node graphs/eventsPerGroup.js",
     "clean": "rm index.html",
     "status": "notes && npm outdated",
     "test": "NODE_ENV=test mocha",
-    "start": "python -m SimpleHTTPServer 8000"
+    "start": "http-server ./"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/webuildsg/archives.git"
+    "url": "git+https://github.com/webuildsg/data.git"
   },
   "keywords": [
     "archives",
@@ -25,14 +26,14 @@
     "webuild.sg",
     "developer"
   ],
-  "author": "Sayanee Basu",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/webuildsg/archives/issues"
+    "url": "https://github.com/webuildsg/data/issues"
   },
-  "homepage": "https://github.com/webuildsg/archives#readme",
+  "homepage": "https://github.com/webuildsg/data#readme",
   "devDependencies": {
     "chai": "^3.4.1",
+    "http-server": "^0.8.5",
     "jade": "^1.11.0",
     "mocha": "^2.3.3",
     "notes": "0.0.4"
