@@ -27,6 +27,7 @@
 
   "globals": {
     "console": true,
+    "d3": true,
     "describe": true,
     "exports": true,
     "it": true,

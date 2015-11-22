@@ -1,4 +1,6 @@
 (function () {
+  'use strict';
+
   function drawLine(name, data) {
     var m = [80, 80, 80, 80];
     var w = 1000 - m[1] - m[3];
