@@ -29,7 +29,7 @@ function getData() {
   })
 
   answer = {
-    events: yData
+    repos: yData
   };
 
   utilsLib.publishData('repos-per-week', answer);

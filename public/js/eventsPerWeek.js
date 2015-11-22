@@ -1,12 +1,9 @@
 (function () {
-  var m = [80, 80, 80, 80];
-  var w = 1000 - m[1] - m[3];
-  var h = 400 - m[0] - m[2];
+  function drawLine(name, data) {
+    var m = [80, 80, 80, 80];
+    var w = 1000 - m[1] - m[3];
+    var h = 400 - m[0] - m[2];
 
-  d3.json('public/data/events-per-week.json', function(error, json) {
-
-    // var data = [ 0, 1, 3, 16, 13, 17, 21, 22, 2, 18, 11, 47, 17, 31, 8, 29, 17, 25, 6, 14, 22, 19, 17, 17, 19, 21, 14, 13, 12, 11, 19, 17, 7, 24, 45, 36, 28, 13, 16, 10, 15, 20, 20, 11, 14, 16 ];
-    var data = json.events;
     var x = d3.scale.linear().domain([0, data.length]).range([0, w]);
     var y = d3.scale.linear().domain([0, 50]).range([h, 0]);
     var line = d3.svg.line()
@@ -17,7 +14,7 @@
         return y(d);
       })
 
-    var graph = d3.select("#events-per-week").append("svg:svg")
+    var graph = d3.select("#" + name).append("svg:svg")
       .attr("width", w + m[1] + m[3])
       .attr("height", h + m[0] + m[2])
       .append("svg:g")
@@ -38,6 +35,13 @@
       .call(yAxisLeft);
 
     graph.append("svg:path").attr("d", line(data));
+  }
+
+  d3.json('public/data/events-per-week.json', function(error, json) {
+    if (error) {
+      console.log(error)
+    }
+    drawLine('events-per-week', json.events)
   })
 })();
 
