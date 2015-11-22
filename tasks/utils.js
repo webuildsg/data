@@ -44,7 +44,10 @@ function getWeekNumber(generatedDate) {
 
 function publishData(name, data) {
   fs.writeFile('public/data/' + name + '.json', JSON.stringify(data), function (err) {
-    if (err) throw err;
+    if (err) {
+      console.log(err)
+    }
+
     console.log('File public/data/' + name + '.json saved!');
   });
 }

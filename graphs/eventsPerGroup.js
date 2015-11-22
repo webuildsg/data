@@ -4,32 +4,26 @@
 // each number is the total number of events in a week
 
 var utilsLib = require('../tasks/utils');
-var moment = require('moment-timezone');
-var fs = require('fs');
 
-function getTotalEventPerDay(events) {
-  return events.length;
-}
-
-function getData() {
+function getData(attr) {
   var type = 'events';
   var answer = [];
   var groups = [];
   var replies = [];
 
-  utilsLib.listFilePaths(type).forEach(function(file, index) {
+  utilsLib.listFilePaths(type).forEach(function(file) {
     var data = require('.' + file);
 
     data.events.forEach(function(ev) {
-      if (groups.indexOf(ev.group_name) < 0) {
-        groups.push(ev.group_name)
+      if (groups.indexOf(ev[ attr ]) < 0) {
+        groups.push(ev[ attr ])
         answer.push({
-          group: ev.group_name,
+          group: ev[ attr ],
           n: 1
         })
       } else {
         answer.forEach(function(a) {
-          if (a.group === ev.group_name) {
+          if (a.group === ev[ attr ]) {
             a.n += 1;
           }
         })
@@ -47,4 +41,4 @@ function getData() {
   utilsLib.publishData('events-per-group', replies);
 }
 
-getData();
+getData('group_name');

@@ -135,7 +135,7 @@ function checkTotal(data, type) {
 function check(type) {
   var failedCheck = 0;
 
-  utilsLib.listFilePaths(type).forEach(function(file, index) {
+  utilsLib.listFilePaths(type).forEach(function(file) {
     var data = require('.' + file);
 
     if(!metaNode(data)) {

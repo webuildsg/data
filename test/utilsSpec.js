@@ -1,7 +1,6 @@
 'use strict';
 
 var expect = require('chai').expect;
-var moment = require('moment-timezone');
 var utilsLib = require('../tasks/utils');
 
 describe('Utils', function() {

@@ -12,7 +12,7 @@
     "clean": "rm index.html",
     "status": "notes && npm outdated",
     "check-data": "node tasks/check",
-    "test": "NODE_ENV=test mocha",
+    "test": "jshint graphs tasks test && NODE_ENV=test mocha",
     "start": "http-server ./"
   },
   "repository": {
@@ -36,6 +36,7 @@
     "chai": "^3.4.1",
     "http-server": "^0.8.5",
     "jade": "^1.11.0",
+    "jshint": "^2.8.0",
     "mocha": "^2.3.3",
     "notes": "0.0.4"
   },

@@ -4,16 +4,13 @@
 // each number is the total number of events in a week
 
 var utilsLib = require('../tasks/utils');
-var moment = require('moment-timezone');
-var fs = require('fs');
 
 function getData() {
   var type = 'repos';
-  var yData = [];
   var answer = [];
   var languages = [];
 
-  utilsLib.listFilePaths(type).forEach(function(file, index) {
+  utilsLib.listFilePaths(type).forEach(function(file) {
     var data = require('.' + file);
 
     data.repos.forEach(function(repo) {
