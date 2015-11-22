@@ -128,6 +128,9 @@ function reposNode(data) {
   return true;
 }
 
+function checkTotal(data, type) {
+  return data.meta[ 'total_' + type ] === data[type].length;
+}
 
 function check(type) {
   utilsLib.listFilePaths(type).forEach(function(file, index) {
@@ -135,6 +138,10 @@ function check(type) {
 
     if(!metaNode(data)) {
       console.log(file + ' does not have the right meta node')
+    }
+
+    if(!checkTotal(data, type)) {
+      console.log(file + ' does not have the correct total number of ' + type);
     }
 
     if (type === 'events') {
@@ -151,8 +158,8 @@ function check(type) {
   })
 }
 
-// check('events');
-// check('repos');
+check('events');
+check('repos');
 
 exports.check = check;
 exports.metaNode = metaNode;
