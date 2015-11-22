@@ -38,6 +38,10 @@ function getCurrentDayData(data, type) {
   return answer;
 }
 
+function getWeekNumber(generatedDate) {
+  return moment(generatedDate).isoWeek();
+}
+
 function publishData(name, data) {
   fs.writeFile('public/data/' + name + '.json', JSON.stringify(data), function (err) {
     if (err) throw err;
@@ -48,3 +52,4 @@ function publishData(name, data) {
 exports.listFilePaths = listFilePaths;
 exports.getCurrentDayData = getCurrentDayData;
 exports.publishData = publishData;
+exports.getWeekNumber = getWeekNumber;

@@ -7,10 +7,6 @@ var utilsLib = require('../tasks/utils');
 var moment = require('moment-timezone');
 var fs = require('fs');
 
-function getWeekNumber(generatedDate) {
-  return moment(generatedDate).isoWeek();
-}
-
 function getTotalEventPerDay(events) {
   return events.length;
 }

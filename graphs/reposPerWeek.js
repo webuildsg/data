@@ -7,10 +7,6 @@ var utilsLib = require('../tasks/utils');
 var moment = require('moment-timezone');
 var fs = require('fs');
 
-function getWeekNumber(generatedDate) {
-  return moment(generatedDate).isoWeek();
-}
-
 function getTotalReposPerDay(repos) {
   return repos.length;
 }
@@ -23,14 +19,12 @@ function getData() {
   utilsLib.listFilePaths(type).forEach(function(file, index) {
     var data = require('.' + file);
 
-    if (currentWeek !== getWeekNumber(data.meta.generated_at)) {
-      currentWeek = getWeekNumber(data.meta.generated_at);
+    if (currentWeek !== utilsLib.getWeekNumber(data.meta.generated_at)) {
+      currentWeek = utilsLib.getWeekNumber(data.meta.generated_at);
       yData.push(getTotalReposPerDay(data.repos));
     } else {
       yData[ yData.length - 1 ] += getTotalReposPerDay(data.repos);
     }
-
-    // console.log(getTotalReposPerDay(data.events) + ' events on week #' + getWeekNumber(data.meta.generated_at));
   })
 
   console.log(yData);
