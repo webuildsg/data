@@ -24,3 +24,9 @@ path {
 text {
   color: green;
 }
+
+.bar {
+  height: 40px;
+  background: #F5DEB3;
+  margin: .1em 0;
+}
