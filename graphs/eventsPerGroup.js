@@ -38,6 +38,17 @@ function getData(attr) {
     }
   })
 
+  replies = replies.sort(function(a, b) {
+    if (a.group > b.group) {
+      return 1;
+    }
+    if (a.group < b.group) {
+      return -1;
+    }
+
+    return 0;
+  })
+
   utilsLib.publishData('events-per-group', replies);
 }
 

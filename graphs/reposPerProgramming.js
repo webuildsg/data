@@ -30,6 +30,18 @@ function getData() {
     })
   })
 
+  answer = answer.sort(function(a, b) {
+    if (a.language > b.language) {
+      return 1;
+    }
+    if (a.language < b.language) {
+      return -1;
+    }
+
+    return 0;
+  })
+
+  console.log(answer)
   utilsLib.publishData('repos-per-programming', answer);
 }
 
