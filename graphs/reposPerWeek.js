@@ -1,7 +1,7 @@
 'use strict';
 
 // get an array of numbers
-// each number is the total number of events in a week
+// each number is the total number of repos updated in a week
 
 var utilsLib = require('../tasks/utils');
 var moment = require('moment-timezone');
@@ -15,6 +15,7 @@ function getData() {
   var type = 'repos';
   var yData = [];
   var currentWeek;
+  var answer = {};
 
   utilsLib.listFilePaths(type).forEach(function(file, index) {
     var data = require('.' + file);
@@ -27,7 +28,11 @@ function getData() {
     }
   })
 
-  console.log(yData);
+  answer = {
+    events: yData
+  };
+
+  utilsLib.publishData('repos-per-week', answer);
 }
 
 getData();
