@@ -3,28 +3,32 @@
 
   function drawGraph(type, data, attr) {
     var max_n = 0;
-    var graph = d3.select('#' + type);
-
     data.forEach(function(d) {
       max_n = Math.max(d.n, max_n);
     })
 
-    graph.selectAll('.bar')
+    var graph = d3.select('#' + type);
+
+    var bars = graph.selectAll('.bar')
       .data(data)
       .enter()
+      .append('div').classed('bar', true)
+
+    bars
       .append('div')
-      .attr('class', function(d) {
-        return 'bar ' + d.language;
+      .classed('graph-label', true)
+      .text(function(d) {
+        return d[ attr ]
+      });
+
+    bars
+      .append('div')
+      .classed('graph-bar', true)
+      .text(function(d) {
+        return d.n
       })
       .style('width', function(d) {
-        return (d.n/max_n * 100) + '%'
-      })
-      .append('p')
-      .attr('class', function(d) {
-        return attr + ' ' + d[ attr ];
-      })
-      .text( function(d) {
-        return d[ attr ] + ' (' + d.n  + ')';
+        return (d.n/max_n * 80) + '%'
       })
   }
 
