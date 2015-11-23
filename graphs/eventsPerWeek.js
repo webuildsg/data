@@ -4,6 +4,7 @@
 // each number is the total number of events in a week
 
 var utilsLib = require('../tasks/utils');
+var moment = require('moment-timezone');
 
 function getTotalEventPerDay(events) {
   return events.length;
@@ -11,24 +12,25 @@ function getTotalEventPerDay(events) {
 
 function getData(attr) {
   var type = 'events';
-  var yData = [];
+  var answer = [];
   var currentWeek;
-  var answer = {};
 
   utilsLib.listFilePaths(type).forEach(function(file) {
     var data = require('.' + file);
 
     if (currentWeek !== utilsLib.getWeekNumber(data.meta[ attr ])) {
       currentWeek = utilsLib.getWeekNumber(data.meta[ attr ]);
-      yData.push(getTotalEventPerDay(data.events));
+      answer.push({
+        events: getTotalEventPerDay(data.events),
+        week: currentWeek,
+        date: moment(data.meta[ attr ]).format('DD-MMM-YY'),
+        formatted_date: moment(data.meta[ attr ]).format('DD MMM YYYY'),
+        day: moment(data.meta[ attr ]).format('dddd')
+      });
     } else {
-      yData[ yData.length - 1 ] += getTotalEventPerDay(data.events);
+      answer[ answer.length - 1 ].events += getTotalEventPerDay(data.events);
     }
   })
-
-  answer = {
-    events: yData
-  };
 
   utilsLib.publishData('events-per-week', answer);
 }

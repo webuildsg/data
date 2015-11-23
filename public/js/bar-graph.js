@@ -17,6 +17,11 @@
     bars
       .append('div')
       .classed('graph-label', true)
+      .append('a')
+      .attr('href', function(d) {
+        return d.url;
+      })
+      .attr('target', '_blank')
       .text(function(d) {
         return d[ attr ]
       });
@@ -24,11 +29,11 @@
     bars
       .append('div')
       .classed('graph-bar', true)
+      .style('width', function(d) {
+        return (d.n/max_n * 70) + '%'
+      })
       .text(function(d) {
         return d.n
-      })
-      .style('width', function(d) {
-        return (d.n/max_n * 80) + '%'
       })
   }
 

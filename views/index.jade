@@ -17,13 +17,15 @@ html(lang='en')
     meta(name='keywords', content='Singapore, SG, open community, open source, software, hardware, programming, design, maker movement, free events, free tech events')
     meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
     link(rel='publisher', href='https://plus.google.com/+WebuildSg')
-    meta(property='og:image', content='https://webuild.sg/public/logo.png')
-    meta(property='og:url', content='https://data.webuild.sg')
-    meta(property='og:site_name', content='data.webuild.sg')
+
     meta(property='og:title', content='We Build SG Data')
+    meta(property='og:site_name', content='We Build SG Data')
+    meta(property='og:url', content='http://data.webuild.sg')
     meta(property='og:description', content='Using data and graphs to inspire variety, openness and projects!')
+    meta(property='og:image', content='http://webuild.sg/public/logo.png')
     meta(property='og:type', content='website')
 
+    link(rel="stylesheet", href="//fonts.googleapis.com/css?family=Roboto+Slab:400,700")
     link(rel='stylesheet', href='https://webuild.sg/public/css/style.css')
     link(rel='stylesheet', href='public/css/style.css')
 
@@ -38,26 +40,51 @@ html(lang='en')
       header
         .container
           h1 we build!
-          p(style="text-align:center") *work in progress*
+          .splash SG DATA
           h2
             small Using data and graphs to inspire <strong>variety</strong>, <strong>openness</strong> and <strong>projects</strong> for the design and engineering community
 
       footer
         .container
-          p All graphs are generated based on <br> <a href="https://github.com/webuildsg/data/tree/gh-pages/data/events/v1">open events data</a> and <a href="https://github.com/webuildsg/data/tree/gh-pages/data/repos/v1">open source repos data</a>
+          p All graphs are generated based on <br> <a href="https://github.com/webuildsg/data/tree/gh-pages/data/events/v1">open events data</a> and <a href="https://github.com/webuildsg/data/tree/gh-pages/data/repos/v1">open source data</a>
+
+          .explain
+            p an open event is:
+            ul
+              li curated from an api (<a href="https://developers.facebook.com/">Facebook</a>, <a href="http://www.meetup.com/meetup_api/">Meetup</a>, <a href="https://developer.eventbrite.com/">Eventbrite</a>)
+              li manually included or queried from an ICS url
+              li open to public and free for all
+              li held at a valid location
+              li engineering or design related
+          .explain
+            p an open source repository has:
+            ul
+              li an <a href="http://choosealicense.com/">open license</a>
+              li a remote repository on <a href="https://github.com/">Github</a>
+              li "Singapore" in the <a href="https://developer.github.com/v3/users/#get-a-single-user">owner's location</a>
+              li at least 50 <a href="https://developer.github.com/v3/repos/#get">star gazers</a>
+              li been <a href="https://developer.github.com/v3/repos/#get">updated</a> in the last 3 months
 
       .container
-        h3 repositories updated per week
-        <div id="repos-per-week" class="graph"></div>
+        .graph-section
+          h3 repositories updated per week
+          .graph#repos-per-week.mobile-off
+          img(class="mobile-on graph", src="public/img/repos-per-week.png")
+        .graph-section
+          h3 events per week
+          .graph#events-per-week.mobile-off
+          img(class="mobile-on graph", src="public/img/events-per-week.png")
+        .graph-section
+          h3 repositories updated by programming language
+          .graph#repos-per-programming
+        .graph-section
+          h3 active user groups with at least 10 events
+          .graph#events-per-group
 
-        h3 events per week
-        <div id="events-per-week" class="graph"></div>
-
-        h3 repositories updated by programming language
-        <div id="repos-per-programming" class="graph"></div>
-
-        h3 active user groups with at least 10 events
-        <div id="events-per-group" class="graph"></div>
+      footer
+        .container
+          p We welcome your <a href="https://twitter.com/webuildsg">suggestions</a>
+          p Feel free to <a href="https://github.com/webuildsg/data">report bugs / send pull requests</a>
 
     script(src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.9/d3.min.js")
     script(src="public/js/line-graph.js")
