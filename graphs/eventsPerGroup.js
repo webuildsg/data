@@ -74,7 +74,6 @@ function getData(attr) {
     }
   })
 
-  console.log(replies)
   utilsLib.publishData('events-per-group', replies);
 }
 
