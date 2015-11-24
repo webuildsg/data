@@ -183,3 +183,12 @@ text {
     display: none;
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .graph-label, .graph-bar {
+    font-size: .9em;
+  }
+  .bar {
+    height: 32px;
+  }
+}
