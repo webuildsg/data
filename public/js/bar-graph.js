@@ -39,14 +39,23 @@
 
   [
     'repos-per-programming',
-    'events-per-group'
+    'events-per-group',
+    'events-per-day-of-week'
   ].forEach(function(type) {
     d3.json('public/data/' + type + '.json', function(error, data) {
       if (error) {
         console.log(error)
       }
 
-      var attr = type === 'repos-per-programming' ? 'language': 'group';
+      var attr;
+
+      if (type === 'repos-per-programming') {
+        attr = 'language'
+      } else if (type === 'events-per-group') {
+        attr = 'group'
+      } else if (type === 'events-per-day-of-week') {
+        attr = 'day';
+      }
       drawGraph(type, data, attr);
     });
   })
