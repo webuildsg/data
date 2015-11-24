@@ -8,7 +8,7 @@
   },
   "private": true,
   "scripts": {
-    "build": "jade views/index.jade -o . -P && node graphs/reposPerProgramming.js && node graphs/eventsPerGroup.js && node graphs/reposPerWeek.js && node graphs/eventsPerWeek.js",
+    "build": "jade views/index.jade -o . -P && node graphs/reposPerProgramming && node graphs/eventsPerGroup && node graphs/reposPerWeek && node graphs/eventsPerWeek && node graphs/eventsPerDayOfWeek && node graphs/eventsPerTimeOfDay && node graphs/eventsPerDuration",
     "clean": "rm index.html",
     "status": "notes && npm outdated",
     "check-data": "node tasks/check",
