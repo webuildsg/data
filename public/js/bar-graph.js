@@ -41,7 +41,8 @@
     'repos-per-programming',
     'events-per-group',
     'events-per-day-of-week',
-    'events-per-duration'
+    'events-per-duration',
+    'events-per-time-of-day'
   ].forEach(function(type) {
     d3.json('public/data/' + type + '.json', function(error, data) {
       if (error) {
@@ -58,6 +59,8 @@
         attr = 'day';
       } else if (type === 'events-per-duration') {
         attr = 'duration';
+      } else if (type === 'events-per-time-of-day') {
+        attr = 'time';
       }
 
       drawGraph(type, data, attr);

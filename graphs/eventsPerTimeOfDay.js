@@ -26,12 +26,12 @@ function getData(attr) {
         times.push(thisTime);
         answer.push({
           time: thisTime,
-          events: 1
+          n: 1
         });
       } else {
         answer.forEach(function(a) {
           if (a.time === thisTime) {
-            a.events += 1;
+            a.n += 1;
           }
         })
       }
@@ -50,14 +50,16 @@ function getData(attr) {
   })
 
   answer.forEach(function(a) {
-    if (a.events > 9) {
-      replies.push(a)
+    if (a.n > 9) {
+      replies.push({
+        time: a.time + 'h',
+        n: a.n
+      })
     }
   })
 
   console.log(replies)
-
-  // utilsLib.publishData('events-per-day-of-week', replies);
+  utilsLib.publishData('events-per-time-of-day', replies);
 }
 
 getData('group_name');
