@@ -42,7 +42,8 @@
     'events-per-group',
     'events-per-day-of-week',
     'events-per-duration',
-    'events-per-time-of-day'
+    'events-per-time-of-day',
+    'repos-most-active'
   ].forEach(function(type) {
     d3.json('public/data/' + type + '.json', function(error, data) {
       if (error) {
@@ -61,6 +62,8 @@
         attr = 'duration';
       } else if (type === 'events-per-time-of-day') {
         attr = 'time';
+      } else if (type === 'repos-most-active') {
+        attr = 'name';
       }
 
       drawGraph(type, data, attr);
