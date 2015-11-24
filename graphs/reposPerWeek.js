@@ -74,7 +74,10 @@ function getData(attr) {
 
   mostActiveRepos.forEach(function(a) {
     if (a.updated_count > 9) {
-      replies.push(a);
+      replies.push({
+        name: a.name,
+        n: a.updated_count
+      });
     }
   })
 
