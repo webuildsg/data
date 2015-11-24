@@ -10,7 +10,7 @@ function getTimeOfEvent(ev) {
   return moment(ev.formatted_time, 'DD MMM YYYY, ddd, h:mm a').format('HHmm');
 }
 
-function getData(attr) {
+function getData() {
   var type = 'events';
   var times = [];
   var answer = [];
@@ -58,8 +58,7 @@ function getData(attr) {
     }
   })
 
-  console.log(replies)
   utilsLib.publishData('events-per-time-of-day', replies);
 }
 
-getData('group_name');
+getData();

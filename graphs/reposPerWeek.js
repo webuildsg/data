@@ -78,8 +78,7 @@ function getData(attr) {
     }
   })
 
-  console.log(replies);
-  console.log(replies.length)
+  utilsLib.publishData('repos-most-active', replies);
   utilsLib.publishData('repos-per-week', answer);
 }
 

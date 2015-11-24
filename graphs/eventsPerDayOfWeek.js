@@ -10,7 +10,7 @@ function getDayOfWeek(ev) {
   return moment(ev.formatted_time, 'DD MMM YYYY, ddd, h:mm a').format('dddd');
 }
 
-function getData(attr) {
+function getData() {
   var type = 'events';
   var answer = {
     'Monday': 0,
@@ -46,4 +46,4 @@ function getData(attr) {
   utilsLib.publishData('events-per-day-of-week', replies);
 }
 
-getData('group_name');
+getData();

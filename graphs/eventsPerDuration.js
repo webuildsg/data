@@ -11,7 +11,7 @@ function getDuration(ev) {
   return Math.ceil(moment(ev.end_time).diff(ev.start_time) / 60 / 60 / 1000);
 }
 
-function getData(attr) {
+function getData() {
   var type = 'events';
   var answer = [];
   var durations = [];
@@ -81,4 +81,4 @@ function getData(attr) {
   utilsLib.publishData('events-per-duration', replies);
 }
 
-getData('group_name');
+getData();
