@@ -3,6 +3,7 @@
 // check that the json files have the required format
 
 var utilsLib = require('./utils');
+var moment = require('moment-timezone');
 
 function metaNode(data) {
   if (!data.meta) {
@@ -132,8 +133,32 @@ function checkTotal(data, type) {
   return data.meta[ 'total_' + type ] === data[type].length;
 }
 
+function hasSingleDataPerDay(type) {
+  var currDay;
+  var prevDay;
+  var start = type === 'events' ? 32 : 30;
+  var hasDuplicate = 0;
+
+  utilsLib.listFilePaths(type).forEach(function(file) {
+    currDay = file.substr(start, 10);
+
+    if (prevDay === currDay) {
+      console.log(file + ' has duplicate data for this day');
+      hasDuplicate++;
+    }
+
+    prevDay = currDay;
+  })
+
+  return hasDuplicate > 0 ? false : true;
+}
+
 function check(type) {
   var failedCheck = 0;
+
+  if (!hasSingleDataPerDay(type)) {
+    failedCheck++;
+  }
 
   utilsLib.listFilePaths(type).forEach(function(file) {
     var data = require('.' + file);
