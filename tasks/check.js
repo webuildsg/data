@@ -20,112 +20,44 @@ function metaNode(data) {
   return false;
 }
 
-function eventsNode(data) {
-  if (!data.events) {
-    return false;
+function hasEachNode(data, type) {
+  var noNodes = 0;
+  var compulsoryNodes = [];
+
+  if (type === 'events') {
+    compulsoryNodes = ['id', 'name', 'location', 'url', 'group_url', 'formatted_time', 'start_time', 'end_time'];
+  } else if (type === 'repos') {
+    compulsoryNodes = ['name', 'html_url', 'pushed_at', 'updated_at', 'stargazers_count', 'owner'];
   }
 
-  if (data.events.length < 1) {
-    return true;
-  }
-
-  data.events.forEach(function(ev) {
-    if (!ev.id) {
-      return false;
-    }
-
-    if (!ev.name) {
-      return false;
-    }
-
-    if (!ev.description) {
-      return false;
-    }
-
-    if (!ev.location) {
-      return false;
-    }
-
-    if (!ev.url) {
-      return false;
-    }
-
-    if (!ev.group_name) {
-      return false;
-    }
-
-    if (!ev.group_url) {
-      return false;
-    }
-
-    if (!ev.formatted_time) {
-      return false;
-    }
-
-    if (!ev.start_time) {
-      return false;
-    }
-
-    if (!ev.end_time) {
-      return false;
+  compulsoryNodes.forEach(function(eachNode) {
+    if (!data[ eachNode ]) {
+      console.log(eachNode + ' node not found for ' + type + ' on ' + data.formatted_time)
+      noNodes++;
     }
   })
 
-  return true;
+  return !noNodes;
 }
 
-function reposNode(data) {
-  if (!data.repos) {
+function hasNodes(data, type) {
+  if (!data[ type ]) {
     return false;
   }
 
-  if (data.repos.length < 1) {
+  if (data[ type ].length < 1) {
     return true;
   }
 
-  data.repos.forEach(function(ev) {
-    if (!ev.name) {
-      return false;
-    }
+  var faultCount = 0;
 
-    if (!ev.html_url) {
-      return false;
-    }
-
-    if (!ev.pused_at) {
-      return false;
-    }
-
-    if (!ev.updated_at) {
-      return false;
-    }
-
-    if (!ev.language) {
-      return false;
-    }
-
-    if (!ev.stargazers_coutn) {
-      return false;
-    }
-
-    if (!ev.owner) {
-      return false;
-    }
-
-    if (!ev.owner.login) {
-      return false;
-    }
-
-    if (!ev.owner.avatar_url) {
-      return false;
-    }
-
-    if (!ev.owner.html_url) {
-      return false;
+  data[ type ].forEach(function(ev) {
+    if (!hasEachNode(ev, type)) {
+      faultCount++;
     }
   })
 
-  return true;
+  return !faultCount;
 }
 
 function checkTotal(data, type) {
@@ -172,25 +104,16 @@ function check(type) {
       console.log(file + ' does not have the correct total number of ' + type);
     }
 
-    if (type === 'events') {
-      if(!eventsNode(data)) {
-        failedCheck++;
-        console.log(file + ' does not have the right data node')
-      }
-    }
-
-    if (type === 'repos') {
-      if(!reposNode(data)) {
-        failedCheck++;
-        console.log(file + ' does not have the right data node')
-      }
+    if(!hasNodes(data, type)) {
+      failedCheck++;
+      console.log(file + ' does not have the right data node')
     }
   })
 
   if(failedCheck === 0) {
     console.log('All ' + type + ' data is in the correct condition!')
   } else {
-    console.log('There was a total of ' + failedCheck + 'errors in the data files.')
+    console.log('There was a total of ' + failedCheck + ' errors in the data files.')
   }
 }
 
@@ -199,5 +122,4 @@ check('repos');
 
 exports.check = check;
 exports.metaNode = metaNode;
-exports.eventsNode = eventsNode;
-exports.reposNode = reposNode;
+exports.hasNodes = hasNodes;

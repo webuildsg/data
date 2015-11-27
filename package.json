@@ -12,7 +12,7 @@
     "clean": "rm index.html",
     "status": "notes && npm outdated",
     "check-data": "node tasks/check",
-    "test": "jshint graphs tasks test public/js && NODE_ENV=test mocha",
+    "test": "jshint graphs tasks test public/js && NODE_ENV=test mocha && jsinspect ./tasks ./graphs -t 30",
     "start": "http-server ./"
   },
   "repository": {

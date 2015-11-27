@@ -30,17 +30,7 @@ function getData() {
     })
   })
 
-  answer = answer.sort(function(a, b) {
-    if (a.language > b.language) {
-      return 1;
-    }
-    if (a.language < b.language) {
-      return -1;
-    }
-
-    return 0;
-  })
-
+  answer = utilsLib.sortByAlphabet(answer, 'language');
   utilsLib.publishData('repos-per-programming', answer);
 }
 

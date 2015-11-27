@@ -71,14 +71,15 @@
 
       var focus = svg.append('g')
         .attr('class', 'focus')
-        .style('display', 'none');
+        .style('display', 'block');
 
       focus.append('circle')
         .attr('r', 7);
 
       focus.append('text')
         .attr('x', 9)
-        .attr('dy', '.35em');
+        .attr('dx', '-8em')
+        .attr('dy', '1.5em');
 
       svg.append('rect')
         .attr('class', 'overlay')
@@ -96,7 +97,10 @@
         var d = x0 - d0.date > d1.date - x0 ? d1 : d0;
 
         focus.attr('transform', 'translate(' + x(d.date) + ',' + y(d[ type ]) + ')');
-        focus.select('text').text(formatCurrency(d)).attr('class', 'label');
+        focus
+          .select('text')
+          .text(formatCurrency(d))
+          .attr('class', 'label');
       }
     });
   })

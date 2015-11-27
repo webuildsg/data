@@ -5,11 +5,46 @@
 
 var utilsLib = require('../tasks/utils');
 
+function getMoreThan(array, number) {
+  var answer = [];
+
+  array.forEach(function(eachItem) {
+    if (eachItem.n > number) {
+      answer.push(eachItem)
+    }
+  })
+
+  return answer;
+}
+
+function removeLocationString(array) {
+  array.forEach(function(eachItem) {
+    var group = eachItem.group.replace('Singapore ', '');
+    eachItem.group = group;
+
+    group = eachItem.group.replace('(Singapore)', '');
+    eachItem.group = group;
+
+    group = eachItem.group.replace('(SG)', '');
+    eachItem.group = group;
+
+    group = eachItem.group.replace(' SG', '');
+    eachItem.group = group;
+
+    // remove "/groups" from facebook group url for Facebook Pages/Groups
+    var url = eachItem.url;
+    if (url.indexOf('www.facebook.com/groups') > -1) {
+      eachItem.url = url.replace('/groups', '')
+    }
+  })
+
+  return array;
+}
+
 function getData(attr) {
   var type = 'events';
   var answer = [];
   var groups = [];
-  var replies = [];
 
   utilsLib.listFilePaths(type).forEach(function(file) {
     var data = require('.' + file);
@@ -36,45 +71,11 @@ function getData(attr) {
     })
   })
 
-  // show groups with at least 10 or more events
-  answer.forEach(function(a) {
-    if (a.n > 9) {
-      replies.push(a)
-    }
-  })
+  answer = getMoreThan(answer, 9);
+  answer = removeLocationString(answer);
+  answer = utilsLib.sortByAlphabet(answer, 'group');
 
-  replies = replies.sort(function(a, b) {
-    if (a.group > b.group) {
-      return 1;
-    }
-    if (a.group < b.group) {
-      return -1;
-    }
-
-    return 0;
-  })
-
-  replies.forEach(function(r) {
-    var group = r.group.replace('Singapore ', '');
-    r.group = group;
-
-    group = r.group.replace('(Singapore)', '');
-    r.group = group;
-
-    group = r.group.replace('(SG)', '');
-    r.group = group;
-
-    group = r.group.replace(' SG', '');
-    r.group = group;
-
-    // remove "/groups" from facebook group url for Facebook Pages/Groups
-    var url = r.url;
-    if (url.indexOf('www.facebook.com/groups') > -1) {
-      r.url = url.replace('/groups', '')
-    }
-  })
-
-  utilsLib.publishData('events-per-group', replies);
+  utilsLib.publishData('events-per-group', answer);
 }
 
 getData('group_name');

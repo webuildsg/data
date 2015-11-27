@@ -4,39 +4,10 @@
 // each number is the total number of events in the day of the week
 
 var utilsLib = require('../tasks/utils');
-var moment = require('moment-timezone');
-
-function getTimeOfEvent(ev) {
-  return moment(ev.formatted_time, 'DD MMM YYYY, ddd, h:mm a').format('HHmm');
-}
 
 function getData() {
-  var type = 'events';
-  var times = [];
-  var answer = [];
+  var answer = utilsLib.getTotalByProperty('events', 'time');
   var replies = [];
-
-  utilsLib.listFilePaths(type).forEach(function(file) {
-    var data = require('.' + file);
-
-    data.events.forEach(function(ev) {
-      var thisTime = getTimeOfEvent(ev);
-
-      if (times.indexOf(thisTime) < 0) {
-        times.push(thisTime);
-        answer.push({
-          time: thisTime,
-          n: 1
-        });
-      } else {
-        answer.forEach(function(a) {
-          if (a.time === thisTime) {
-            a.n += 1;
-          }
-        })
-      }
-    })
-  })
 
   answer = answer.sort(function(a, b) {
     if (a.time > b.time) {
