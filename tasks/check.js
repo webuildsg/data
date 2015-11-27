@@ -3,7 +3,6 @@
 // check that the json files have the required format
 
 var utilsLib = require('./utils');
-var moment = require('moment-timezone');
 
 function metaNode(data) {
   if (!data.meta) {
