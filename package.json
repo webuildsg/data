@@ -37,6 +37,7 @@
     "http-server": "^0.8.5",
     "jade": "^1.11.0",
     "jshint": "^2.8.0",
+    "jsinspect": "^0.7.2",
     "mocha": "^2.3.3",
     "notes": "0.0.4"
   },
