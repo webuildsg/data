@@ -1,0 +1,17 @@
+doctype
+html(lang='en')
+  include ./../../partials/head.jade
+  body
+    //if lt IE 9
+      p.chromeframe Your browser is <em>ancient!</em> <a href='http://browsehappy.com/'>Upgrade to a cool new browser</a> to experience this site!
+    div.wrapper
+      include ./../../partials/header.jade
+
+      .container
+        .graph-section
+          h3 repositories updated per week
+          .graph#repos-per-week.mobile-off
+          img(class="mobile-on graph", src="/public/img/repos-per-week.png")
+      include ./../../partials/explain.jade
+      include ./../../partials/footer.jade
+    include ./../../partials/scripts.jade

@@ -1,0 +1,16 @@
+doctype
+html(lang='en')
+  include ./../../partials/head.jade
+  body
+    //if lt IE 9
+      p.chromeframe Your browser is <em>ancient!</em> <a href='http://browsehappy.com/'>Upgrade to a cool new browser</a> to experience this site!
+    div.wrapper
+      include ./../../partials/header.jade
+
+      .container
+        .graph-section
+          h3 events by time of day
+          .graph#events-per-time-of-day
+      include ./../../partials/explain.jade
+      include ./../../partials/footer.jade
+    include ./../../partials/scripts.jade

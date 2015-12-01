@@ -10,8 +10,87 @@ footer {
   margin: 0;
 }
 
+header:hover {
+  cursor: pointer;
+}
+
 h2 {
   padding: 0;
+}
+
+.search {
+  margin: 2rem auto 1rem;
+  display: block;
+  border: 3px solid #eee;
+  border-radius: 9px;
+  font-size: 1.5rem;
+  outline: none;
+  padding: 1rem 2rem;
+  text-align: center;
+  color: #444;
+  font-family: "Open Sans",Helvetica Neue,sans-serif;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+
+.search:focus {
+  border-color: #228DB7;
+}
+
+.searchable span {
+  display: block;
+  background: #fff;
+  border-radius: 50%;
+  padding: 1.8em;
+  height: 120px;
+  width: 120px;
+}
+
+.searchable:hover span {
+  background: #eee;
+}
+
+.searchable:hover .icon-graph {
+  fill: #228DB7;
+  stroke: #228DB7;
+}
+
+.searchable:hover span {
+  background: #f8f4da;
+}
+
+.searchable:hover .graph-name {
+  color: #e06149;
+}
+
+.searchable a {
+  text-decoration: none;
+}
+
+.list-graph {
+  list-style: none;
+  text-align: center;
+  padding: 0;
+}
+
+.list-graph li {
+  display: inline-block;
+  vertical-align: top;
+  width: 120px;
+  margin: 1em 5%;
+}
+
+.list-graph img {
+  display: block;
+}
+
+.graph-name {
+  color: #444;
+  font-size: .9em;
+  margin: .5em 0;
+  text-align: center;
 }
 
 .splash {
@@ -33,6 +112,15 @@ h2 {
   -ms-border-radius: 0.5vw;
   -o-border-radius: 0.5vw;
   border-radius: 0.5vw;
+}
+
+.info {
+  color: #666;
+  text-align: center;
+}
+
+.info a {
+  color: #666;
 }
 
 path {
@@ -155,6 +243,12 @@ text {
   fill: #c11a18;
   font-size: 18px;
   text-transform: lowercase;
+}
+
+.icon-graph {
+  fill: #999;
+  stroke: #999;
+  stroke-width: 0;
 }
 
 /* responsive */

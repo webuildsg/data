@@ -28,13 +28,15 @@
   "globals": {
     "console": true,
     "d3": true,
+    "document": true,
     "describe": true,
     "exports": true,
     "it": true,
     "module": true,
     "node": true,
     "process": true,
-    "require": true
+    "require": true,
+    "window": true
   },
 
   "asi": true,

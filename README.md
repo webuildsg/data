@@ -23,6 +23,10 @@ A daily scheduler stores the data snapshots for [events](https://github.com/webu
 
 Please see [`CONTRIBUTING.md`](CONTRIBUTING.md) for details.
 
+#credits
+
+- [Icomoon free SVG icons](https://icomoon.io/#icons-icomoon)
+
 ##license
 
 Released under an [MIT license](LICENSE)

@@ -1,104 +1,56 @@
 doctype
-//
-  |        __         ____         ____     ____                     __               __                         ____
-  |       / /_  ___  / / /___     / __/__  / / /___ _      __   ____/ /__ _   _____  / /___  ____  ___  _____   / / /
-  |      / __ \/ _ \/ / / __ \   / /_/ _ \/ / / __ \ | /| / /  / __  / _ \ | / / _ \/ / __ \/ __ \/ _ \/ ___/  / / /
-  |     / / / /  __/ / / /_/ /  / __/  __/ / / /_/ / |/ |/ /  / /_/ /  __/ |/ /  __/ / /_/ / /_/ /  __/ /     /_/_/
-  |    /_/ /_/\___/_/_/\____/  /_/  \___/_/_/\____/|__/|__/   \__,_/\___/|___/\___/_/\____/ .___/\___/_/     (_|_)
-  |                                                                                      /_/
-//- |
-
 html(lang='en')
-  head
-    meta(charset='utf-8')
-
-    title We Build SG Data
-    meta(name='description', content='Using data and graphs to inspire variety, openness and projects!')
-    meta(name='keywords', content='Singapore, SG, open community, open source, software, hardware, programming, design, maker movement, free events, free tech events')
-    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
-    link(rel='publisher', href='https://plus.google.com/+WebuildSg')
-
-    meta(property='og:title', content='We Build SG Data')
-    meta(property='og:site_name', content='We Build SG Data')
-    meta(property='og:url', content='http://data.webuild.sg')
-    meta(property='og:description', content='Using data and graphs to inspire variety, openness and projects!')
-    meta(property='og:image', content='public/img/pic.png')
-    meta(property='og:type', content='website')
-
-    link(rel="icon", href="https://webuild.sg/public/favicon.ico", type="image/x-icon")
-    link(rel="stylesheet", href="//fonts.googleapis.com/css?family=Roboto+Slab:400,700")
-    link(rel='stylesheet', href='https://webuild.sg/public/css/style.css')
-    link(rel='stylesheet', href='public/css/style.css')
-
-    link(rel='apple-touch-icon', href='https://webuild.sg/public/apple-touch-icon.png')
-    link(rel='apple-touch-icon', sizes='72x72', href='https://webuild.sg/public/apple-touch-icon-72x72-precomposed.png')
-    link(rel='apple-touch-icon', sizes='114x114', href='https://webuild.sg/public/apple-touch-icon-114x114-precomposed.png')
-    link(rel='apple-touch-icon', sizes='144x144', href='https://webuild.sg/public/apple-touch-icon-144x144-precomposed.png')
+  include ./partials/head.jade
   body
     //if lt IE 9
       p.chromeframe Your browser is <em>ancient!</em> <a href='http://browsehappy.com/'>Upgrade to a cool new browser</a> to experience this site!
     div.wrapper
-      header
-        .container
-          h1 we build!
-          .splash SG DATA
-          h2
-            small Using data and graphs to inspire <strong>variety</strong>, <strong>openness</strong> and <strong>projects</strong> for the design and engineering community
+      include ./partials/header.jade
 
-      footer
-        .container
-          p All graphs are generated based on <br> <a href="https://github.com/webuildsg/data/tree/gh-pages/data/events/v1">open events data</a> and <a href="https://github.com/webuildsg/data/tree/gh-pages/data/repos/v1">open source data</a>
-
-          .explain
-            p an open event is:
-            ul
-              li curated from an api (<a href="https://developers.facebook.com/">Facebook</a>, <a href="http://www.meetup.com/meetup_api/">Meetup</a>, <a href="https://developer.eventbrite.com/">Eventbrite</a>)
-              li manually included or queried from an ICS url
-              li open to public and free for all
-              li held at a valid location
-              li engineering or design related
-          .explain
-            p an open source repository has:
-            ul
-              li an <a href="http://choosealicense.com/">open license</a>
-              li a remote repository on <a href="https://github.com/">Github</a>
-              li "Singapore" in the <a href="https://developer.github.com/v3/users/#get-a-single-user">owner's location</a>
-              li at least 50 <a href="https://developer.github.com/v3/repos/#get">star gazers</a>
-              li been <a href="https://developer.github.com/v3/repos/#get">updated</a> in the last 3 months
+      <input class="search" id="search" placeholder="search data"/>
 
       .container
-        .graph-section
-          h3 repositories updated per week
-          .graph#repos-per-week.mobile-off
-          img(class="mobile-on graph", src="public/img/repos-per-week.png")
-        .graph-section
-          h3 events per week
-          .graph#events-per-week.mobile-off
-          img(class="mobile-on graph", src="public/img/events-per-week.png")
-        .graph-section
-          h3 repositories updated by programming language
-          .graph#repos-per-programming
-        .graph-section
-          h3 active user groups with > 10 events
-          .graph#events-per-group
-        .graph-section
-          h3 active repos with > 10 updates
-          .graph#repos-most-active
-        .graph-section
-          h3 events by day of week
-          .graph#events-per-day-of-week
-        .graph-section
-          h3 events by duration
-          .graph#events-per-duration
-        .graph-section
-          h3 events by time of day
-          .graph#events-per-time-of-day
+        ul.list-graph
+          li(class="searchable", data-index="repositories repos open source week weeks")
+            a(href="/dataset/repos-per-week")
+              span
+                include ./icons/chart.jade
+              p.graph-name repos per week
+          li(class="searchable", data-index="events meetup week weeks")
+            a(href="/dataset/events-per-week")
+              span
+                include ./icons/bar.jade
+              p.graph-name events per week
+          li(class="searchable", data-index="repos repositories open source programming language")
+            a(href="/dataset/repos-per-programming")
+              span
+                include ./icons/code.jade
+              p.graph-name programming languages
+          li(class="searchable", data-index="events meetups active user group")
+            a(href="/dataset/events-per-group")
+              span
+                include ./icons/group.jade
+              p.graph-name active user groups
+          li(class="searchable", data-index="repos repositories open source active")
+            a(href="/dataset/repos-most-active")
+              span
+                include ./icons/repo.jade
+              p.graph-name active repositories
+          li(class="searchable", data-index="meetup day week events")
+            a(href="/dataset/events-per-day-of-week")
+              span
+                include ./icons/cal.jade
+              p.graph-name event day of week
+          li(class="searchable", data-index="meetup event duration")
+            a(href="/dataset/events-per-duration")
+              span
+                include ./icons/hourglass.jade
+              p.graph-name event duration
+          li(class="searchable", data-index="time meetup event hour day")
+            a(href="/dataset/events-per-time-of-day")
+              span
+                include ./icons/clock.jade
+              p.graph-name event time of day
 
-      footer
-        .container
-          p We welcome your <a href="https://twitter.com/webuildsg">suggestions</a>
-          p Feel free to <a href="https://github.com/webuildsg/data">report bugs / send pull requests</a>
-
-    script(src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.9/d3.min.js")
-    script(src="public/js/line-graph.js")
-    script(src="public/js/bar-graph.js")
+      include ./partials/footer.jade
+    script(src="/public/js/script.js")

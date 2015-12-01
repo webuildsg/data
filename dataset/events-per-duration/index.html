@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>We Build SG Data</title>
+    <meta name="description" content="Using data and graphs to inspire variety, openness and projects!">
+    <meta name="keywords" content="Singapore, SG, open community, open source, software, hardware, programming, design, maker movement, free events, free tech events">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="publisher" href="https://plus.google.com/+WebuildSg">
+    <meta property="og:title" content="We Build SG Data">
+    <meta property="og:site_name" content="We Build SG Data">
+    <meta property="og:url" content="http://data.webuild.sg">
+    <meta property="og:description" content="Using data and graphs to inspire variety, openness and projects!">
+    <meta property="og:image" content="public/img/pic.png">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="https://webuild.sg/public/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto+Slab:400,700">
+    <link rel="stylesheet" href="https://webuild.sg/public/css/style.css">
+    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="apple-touch-icon" href="https://webuild.sg/public/apple-touch-icon.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="https://webuild.sg/public/apple-touch-icon-72x72-precomposed.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="https://webuild.sg/public/apple-touch-icon-114x114-precomposed.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="https://webuild.sg/public/apple-touch-icon-144x144-precomposed.png">
+    <style id="search_style"></style>
+  </head>
+  <body>
+    <!--if lt IE 9p.chromeframe Your browser is <em>ancient!</em> <a href='http://browsehappy.com/'>Upgrade to a cool new browser</a> to experience this site!
+    -->
+    <div class="wrapper">
+      <header>
+        <div class="container">
+          <h1>we build!</h1>
+          <div class="splash">SG DATA</div>
+          <h2><small>Using data and graphs to inspire <strong>variety</strong>, <strong>openness</strong> and <strong>projects</strong> for the design and engineering community</small></h2>
+        </div>
+      </header>
+      <div class="container">
+        <div class="graph-section">
+          <h3>events by duration</h3>
+          <div id="events-per-duration" class="graph"></div>
+        </div>
+      </div>
+      <div class="container">
+        <p class="info">All graphs are generated based on <br> <a href="https://github.com/webuildsg/data/tree/gh-pages/data/events/v1">open events data</a> and <a href="https://github.com/webuildsg/data/tree/gh-pages/data/repos/v1">open source data</a></p>
+        <div class="explain">
+          <p class="info">an open event is:</p>
+          <ul>
+            <li>curated from an api (<a href="https://developers.facebook.com/">Facebook</a>, <a href="http://www.meetup.com/meetup_api/">Meetup</a>, <a href="https://developer.eventbrite.com/">Eventbrite</a>)</li>
+            <li>manually included or queried from an ICS url</li>
+            <li>open to public and free for all</li>
+            <li>held at a valid location</li>
+            <li>engineering or design related</li>
+          </ul>
+        </div>
+        <div class="explain">
+          <p class="info">an open source repository has:</p>
+          <ul>
+            <li>an <a href="http://choosealicense.com/">open license</a></li>
+            <li>a remote repository on <a href="https://github.com/">Github</a></li>
+            <li>"Singapore" in the <a href="https://developer.github.com/v3/users/#get-a-single-user">owner's location</a></li>
+            <li>at least 50 <a href="https://developer.github.com/v3/repos/#get">star gazers</a></li>
+            <li>been <a href="https://developer.github.com/v3/repos/#get">updated</a> in the last 3 months</li>
+          </ul>
+        </div>
+      </div>
+      <footer>
+        <div class="container">
+          <p>We welcome your <a href="https://twitter.com/webuildsg">suggestions</a></p>
+          <p>Feel free to <a href="https://github.com/webuildsg/data">report bugs / send pull requests</a></p>
+        </div>
+      </footer>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.9/d3.min.js"></script>
+    <script src="/public/js/line-graph.js"></script>
+    <script src="/public/js/bar-graph.js"></script>
+    <script src="/public/js/script.js"></script>
+  </body>
+</html>
