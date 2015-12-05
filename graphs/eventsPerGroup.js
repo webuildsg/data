@@ -2,6 +2,43 @@
 
 var utilsLib = require('../tasks/utils');
 
+function getData(source) {
+  var attr = 'group_name';
+  var answer = [];
+  var groups = [];
+
+  source.forEach(function(file) {
+    var data = require('.' + file);
+
+    data.events.forEach(function(ev) {
+      var attribute = ev[ attr ];
+
+      if (groups.indexOf(attribute) < 0) {
+        if (attribute) {
+          groups.push(attribute)
+          answer.push({
+            group: attribute,
+            n: 1,
+            url: ev.group_url
+          })
+        }
+      } else {
+        answer.forEach(function(a) {
+          if (a.group === ev[ attr ]) {
+            a.n += 1;
+          }
+        })
+      }
+    })
+  })
+
+  answer = getMoreThan(answer, 9);
+  answer = removeLocationString(answer);
+  answer = utilsLib.sortByAlphabet(answer, 'group');
+
+  utilsLib.publishData('events-per-group', answer);
+}
+
 function getMoreThan(array, number) {
   var answer = [];
 
@@ -38,41 +75,4 @@ function removeLocationString(array) {
   return array;
 }
 
-function getData(attr) {
-  var type = 'events';
-  var answer = [];
-  var groups = [];
-
-  utilsLib.listFilePaths(type).forEach(function(file) {
-    var data = require('.' + file);
-
-    data.events.forEach(function(ev) {
-      var attribute = ev[ attr ];
-
-      if (groups.indexOf(attribute) < 0) {
-        if (attribute) {
-          groups.push(attribute)
-          answer.push({
-            group: attribute,
-            n: 1,
-            url: ev.group_url
-          })
-        }
-      } else {
-        answer.forEach(function(a) {
-          if (a.group === ev[ attr ]) {
-            a.n += 1;
-          }
-        })
-      }
-    })
-  })
-
-  answer = getMoreThan(answer, 9);
-  answer = removeLocationString(answer);
-  answer = utilsLib.sortByAlphabet(answer, 'group');
-
-  utilsLib.publishData('events-per-group', answer);
-}
-
-getData('group_name');
+exports.getData = getData;
