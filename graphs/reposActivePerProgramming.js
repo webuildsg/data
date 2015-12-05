@@ -47,9 +47,6 @@ function addUniq(element, list) {
 
   list.forEach(function(each) {
     if (each.name === element.name) {
-      if (element.name === 'angularjs-pdf') {
-        console.log(element.stargazers_count + '    ' + each.stars)
-      }
       each.stars = element.stargazers_count;
       found = true;
     }
