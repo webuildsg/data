@@ -3,65 +3,23 @@
 var utilsLib = require('../tasks/utils');
 var moment = require('moment-timezone');
 
-function getTotalReposPerDay(repos) {
-  return repos.length;
-}
-
-function addMostActiveRepos(repos, activeRepos) {
-  var active = 0;
-
-  repos.forEach(function(r) {
-    activeRepos.forEach(function(a) {
-      if (a.name === r) {
-        active++;
-        a.updated_count += 1;
-      }
-    })
-
-    if (active < 1) {
-      activeRepos.push({
-        name: r,
-        updated_count: 1
-      })
-    }
-
-    active = 0;
-  })
-
-  return activeRepos;
-}
-
-function getData(attr) {
-  var type = 'repos';
+function getData(source) {
   var currentWeek;
   var answer = [];
   var uniqueReposInThatWeek = [];
-  var mostActiveRepos = [];
-  var replies = [];
+  var attr = 'generated_at';
 
-  utilsLib.listFilePaths(type).forEach(function(file) {
+  source.forEach(function(file) {
     var data = require('.' + file);
+    var generatedAt = data.meta[ attr ];
 
-    if (currentWeek !== utilsLib.getWeekNumber(data.meta[ attr ])) {
-      currentWeek = utilsLib.getWeekNumber(data.meta[ attr ]);
-
-      data.repos.forEach(function(r) {
-        uniqueReposInThatWeek.push(r.name);
-      })
-
-      mostActiveRepos = addMostActiveRepos(uniqueReposInThatWeek, mostActiveRepos);
-      uniqueReposInThatWeek = [];
-
-      answer.push({
-        repos: getTotalReposPerDay(data.repos),
-        week: currentWeek,
-        date: moment(data.meta[ attr ]).format('DD-MMM-YY'),
-        formatted_date: moment(data.meta[ attr ]).format('DD MMM YYYY'),
-        day: moment(data.meta[ attr ]).format('dddd')
-      });
+    if (isANewWeek(currentWeek, generatedAt)) {
+      currentWeek = utilsLib.getWeekNumber(generatedAt);
+      uniqueReposInThatWeek = getUniqRepos(data.repos);
+      answer = addNewWeekRepoData(answer, data);
     } else {
       data.repos.forEach(function(r) {
-        if (uniqueReposInThatWeek.indexOf(r.name) < 0) {
+        if (isNotAUniqRepoThisWeek(uniqueReposInThatWeek, r.name)) {
           answer[ answer.length - 1 ].repos += 1;
           uniqueReposInThatWeek.push(r.name);
         }
@@ -69,17 +27,43 @@ function getData(attr) {
     }
   })
 
-  mostActiveRepos.forEach(function(a) {
-    if (a.updated_count > 9) {
-      replies.push({
-        name: a.name,
-        n: a.updated_count
-      });
-    }
-  })
-
-  utilsLib.publishData('repos-most-active', replies);
-  utilsLib.publishData('repos-per-week', answer);
+  return answer;
 }
 
-getData('generated_at');
+function isANewWeek(currentWeek, generatedAt) {
+  return currentWeek !== utilsLib.getWeekNumber(generatedAt)
+}
+
+function getUniqRepos(repos) {
+  var repoList = [];
+  repos.forEach(function(r) {
+    repoList.push(r.name);
+  })
+
+  return repoList;
+}
+
+function addNewWeekRepoData(answer, data) {
+  var attr = 'generated_at';
+  var generatedAt = data.meta[ attr ];
+
+  answer.push({
+    repos: getTotalReposPerDay(data.repos),
+    week: utilsLib.getWeekNumber(generatedAt),
+    date: moment(generatedAt).format('DD-MMM-YY'),
+    formatted_date: moment(generatedAt).format('DD MMM YYYY'),
+    day: moment(generatedAt).format('dddd')
+  });
+
+  return answer;
+}
+
+function isNotAUniqRepoThisWeek(list, name) {
+  return list.indexOf(name) < 0;
+}
+
+function getTotalReposPerDay(repos) {
+  return repos.length;
+}
+
+exports.getData = getData;

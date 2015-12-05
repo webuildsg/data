@@ -6,10 +6,11 @@ var moment = require('moment-timezone');
 function getData(source) {
   var answer = [];
   var currentWeek;
+  var attr = 'generated_at';
 
   source.forEach(function(file) {
     var data = require('.' + file);
-    var generatedAt = data.meta[ 'generated_at' ];
+    var generatedAt = data.meta[ attr ];
 
     if (currentWeek !== utilsLib.getWeekNumber(generatedAt)) {
       currentWeek = utilsLib.getWeekNumber(generatedAt);
