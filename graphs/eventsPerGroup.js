@@ -36,7 +36,7 @@ function getData(source) {
   answer = removeLocationString(answer);
   answer = utilsLib.sortByAlphabet(answer, 'group');
 
-  utilsLib.publishData('events-per-group', answer);
+  return answer;
 }
 
 function getMoreThan(array, number) {
