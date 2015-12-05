@@ -18,13 +18,20 @@ function getData(source, callback) {
   locationList = addPopularLocations(locationList);
 
   getLatLong(locationList, function(list) {
-    return callback(list);
+    locationList = filterValidLatLong(list)
+    return callback(locationList);
   });
 }
 
 function addPopularLocations(list) {
   return _.filter(list, function(eachItem) {
     return eachItem.n > 4;
+  })
+}
+
+function filterValidLatLong(list) {
+  return _.filter(list, function(l) {
+    return l.latitude && l.longitude;
   })
 }
 
