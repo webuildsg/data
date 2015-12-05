@@ -1,32 +1,23 @@
 'use strict';
 
 var utilsLib = require('../tasks/utils');
+var _ = require('lodash');
 
-function getData() {
-  var answer = utilsLib.getTotalByProperty('events', 'time');
-  var replies = [];
+function getData(source) {
+  var answer = [];
 
-  answer = answer.sort(function(a, b) {
-    if (a.time > b.time) {
-      return 1;
-    }
-    if (a.time < b.time) {
-      return -1;
-    }
-
-    return 0;
-  })
-
-  answer.forEach(function(a) {
+  answer = utilsLib.sortByNumber(source, 'time')
+  answer = _.filter(answer, function(a) {
     if (a.n > 9) {
-      replies.push({
+      return {
         time: a.time + 'h',
         n: a.n
-      })
+      }
     }
   })
 
-  utilsLib.publishData('events-per-time-of-day', replies);
+  return answer;
 }
 
-getData();
+
+exports.getData = getData;

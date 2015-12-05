@@ -5,14 +5,18 @@ var utilsLib = require('../tasks/utils');
 var eventSource = utilsLib.listFilePaths('events');
 
 var totalEventsByDuration = utilsLib.getTotalByProperty('events', 'duration');
+var totalEventsByTime = utilsLib.getTotalByProperty('events', 'time');
+
 var eventsPerDayOfWeekLib = require('./eventsPerDayOfWeek');
 var eventsPerDurationLib = require('./eventsPerDuration');
 var eventsPerGroupLib = require('./eventsPerGroup');
 var eventsPerLocationLib = require('./eventsPerLocation');
+var eventsPerTimeOfDayLib = require('./eventsPerTimeOfDay');
 
 utilsLib.publishData('events-per-day-of-week', eventsPerDayOfWeekLib.getData(eventSource));
 utilsLib.publishData('events-per-duration', eventsPerDurationLib.getData(totalEventsByDuration));
 utilsLib.publishData('events-per-group', eventsPerGroupLib.getData(eventSource));
+utilsLib.publishData('events-per-time-of-day', eventsPerTimeOfDayLib.getData(totalEventsByTime));
 
 eventsPerLocationLib.getData(eventSource, function(data) {
   utilsLib.publishData('events-per-location', data);
