@@ -47,3 +47,4 @@ function setLabelsForDuration(array) {
 
 exports.getData = getData;
 exports.groupByDuration = groupByDuration;
+exports.setLabelsForDuration = setLabelsForDuration;

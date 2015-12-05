@@ -22,4 +22,20 @@ describe('Events per Duration Lib', function() {
       expect(reply[ reply.length - 1 ].n).to.equal(2)
     })
   })
+
+  describe('#setLabelsForDuration', function() {
+    it('returns "duration" as a label for graph', function() {
+      var input = [
+        { n: 36, duration: 1 },
+        { n: 470, duration: 2 },
+        { n: 153, duration: 3 },
+        { n: 7, duration: 6 },
+        { n: 4, duration: 8 },
+        { n: 2, duration: 10 }
+      ]
+      var reply = eventPerDurationLib.setLabelsForDuration(input)
+      expect(reply[ 0 ].duration).to.equal('0 - 1 hour')
+      expect(reply[ reply.length - 1 ].duration).to.equal('10 hours or more')
+    })
+  })
 })
