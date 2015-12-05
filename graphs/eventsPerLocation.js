@@ -3,7 +3,7 @@
 var utilsLib = require('../tasks/utils');
 var overlap = require('word-overlap');
 var _ = require('lodash');
-var geocoder = require('geocoder');
+// var geocoder = require('geocoder');
 
 function isEmptyList(list) {
   return !list.length;
@@ -41,7 +41,7 @@ function hasMatchingWords(word1, word2) {
     'room', 'rm',
     'centre', 'center',
 
-    'building', 'office', 'road', , 'tower', 'boulevard', 'floor', 'university', 'ice', 'financial',
+    'building', 'office', 'road', 'tower', 'boulevard', 'floor', 'university', 'ice', 'financial',
     'plaza', 'place', 'auditorium', 'marina', 'walk', 'square', 'quay', 'block', 'bay', 'avenue', 'near', 'seminar', 'school',
 
     'pte', 'ltd'
@@ -56,9 +56,9 @@ function hasMatchingWords(word1, word2) {
   return overlap(word1, word2, overlapOptions).length > 2;
 }
 
-function isNotAnExactMatch(str1, str2) {
-  return str1 !== str2;
-}
+// function isNotAnExactMatch(str1, str2) {
+//   return str1 !== str2;
+// }
 
 function addUniqueLocation(locationList, location) {
   locationList.push(location);
@@ -129,28 +129,28 @@ function getData() {
     }
   })
 
-  console.log(answer);
-  console.log('\n\n' + answer.length)
+  // console.log(answer);
+  // console.log('\n\n' + answer.length)
 
-  answer.forEach(function(a) {
+  // answer.forEach(function(a) {
     // console.log(a.complete)
 
     // https://stackoverflow.com/questions/16672561/how-to-slow-down-a-loop-with-settimeout-or-setinterval
-    setInterval(function() {
-      console.log(new Date())
-      geocoder.geocode(a.complete, function(e, d){
-        if (e) {
-          console.log('FAIL', e);
-        };
+    // setInterval(function() {
+      // console.log(new Date())
+      // geocoder.geocode(a.complete, function(e, d){
+        // if (e) {
+          // console.log('FAIL', e);
+        // }
 
-        if (d.results[ 0 ]) {
+        // if (d.results[ 0 ]) {
           // console.log(d.results[0].geometry.location.lat + ',' + d.results[0].geometry.location.lng + '   :' + a.complete)
-        } else {
+        // } else {
           // console.log('NOT FOUND: ' + a.complete)
-        }
-      })
-    }, 3000);
-  })
+        // }
+      // })
+    // }, 3000);
+  // })
 }
 
 getData();

@@ -44,3 +44,5 @@ function getData() {
 }
 
 getData();
+
+exports.getDayOfWeek = getDayOfWeek;
