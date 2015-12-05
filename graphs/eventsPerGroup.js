@@ -3,9 +3,19 @@
 var utilsLib = require('../tasks/utils');
 
 function getData(source) {
-  var attr = 'group_name';
-  var answer = [];
+  var answer = addByGroupNameAndUrl(source);
+
+  answer = getMoreThan(answer, 9);
+  answer = removeLocationString(answer);
+  answer = utilsLib.sortByAlphabet(answer, 'group');
+
+  return answer;
+}
+
+function addByGroupNameAndUrl(source) {
   var groups = [];
+  var answer = [];
+  var attr = 'group_name';
 
   source.forEach(function(file) {
     var data = require('.' + file);
@@ -31,10 +41,6 @@ function getData(source) {
       }
     })
   })
-
-  answer = getMoreThan(answer, 9);
-  answer = removeLocationString(answer);
-  answer = utilsLib.sortByAlphabet(answer, 'group');
 
   return answer;
 }
