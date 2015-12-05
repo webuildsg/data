@@ -15,12 +15,13 @@ function getData(source) {
 function addByGroupNameAndUrl(source) {
   var groups = [];
   var answer = [];
+  var attrName = 'group_name';
 
   source.forEach(function(file) {
     var data = require('.' + file);
 
     data.events.forEach(function(ev) {
-      var attribute = ev[ 'group_name' ];
+      var attribute = ev[ attrName ];
 
       if (groupNotInList(groups, attribute)) {
         groups.push(attribute)
@@ -65,18 +66,17 @@ function getMoreThan(array, number) {
 }
 
 function removeLocationString(array) {
+  var patternsToRemove = [
+    'Singapore ',
+    '(Singapore)',
+    '(SG)',
+    ' SG'
+  ];
+
   array.forEach(function(eachItem) {
-    var group = eachItem.group.replace('Singapore ', '');
-    eachItem.group = group;
-
-    group = eachItem.group.replace('(Singapore)', '');
-    eachItem.group = group;
-
-    group = eachItem.group.replace('(SG)', '');
-    eachItem.group = group;
-
-    group = eachItem.group.replace(' SG', '');
-    eachItem.group = group;
+    patternsToRemove.forEach(function(replaceString) {
+      eachItem.group = eachItem.group.replace(replaceString, '')
+    })
 
     eachItem.url = correctFacebookUrl(eachItem.url);
   })
@@ -89,3 +89,4 @@ function correctFacebookUrl(url) {
 }
 
 exports.getData = getData;
+exports.removeLocationString = removeLocationString;
