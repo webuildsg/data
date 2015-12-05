@@ -93,6 +93,11 @@ h2 {
   text-align: center;
 }
 
+.map {
+  margin: 2em auto;
+  width: 800px;
+}
+
 .splash {
   background-color: #fff;
   font-size: 1.5vw;
