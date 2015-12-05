@@ -9,7 +9,7 @@
   "private": true,
   "scripts": {
     "build:html": "jade views/index.jade -o . -P && jade views/graphs/repos-per-week -o ./dataset/repos-per-week -P && jade views/graphs/events-per-week -o ./dataset/events-per-week -P && jade views/graphs/repos-per-programming -o ./dataset/repos-per-programming -P && jade views/graphs/events-per-group -o ./dataset/events-per-group -P && jade views/graphs/repos-most-active -o ./dataset/repos-most-active -P && jade views/graphs/events-per-day-of-week -o ./dataset/events-per-day-of-week -P && jade views/graphs/events-per-duration -o ./dataset/events-per-duration -P && jade views/graphs/events-per-time-of-day -o ./dataset/events-per-time-of-day -P",
-    "build:graph": "node graphs && node graphs/reposPerProgramming && node graphs/eventsPerGroup && node graphs/reposPerWeek && node graphs/eventsPerWeek && node graphs/eventsPerTimeOfDay && node graphs/eventsPerDuration",
+    "build:graph": "node graphs && node graphs/reposPerProgramming && node graphs/eventsPerGroup && node graphs/reposPerWeek && node graphs/eventsPerWeek && node graphs/eventsPerTimeOfDay",
     "build": "npm run build:html && npm run build:graph",
     "clean": "rm index.html && rm -rf dataset",
     "status": "notes && npm outdated",

@@ -2,15 +2,23 @@
 
 var utilsLib = require('../tasks/utils');
 
-function getData() {
-  var answer = utilsLib.getTotalByProperty('events', 'duration');
+function getData(source) {
+  var answer = groupByDuration(source);
+
+  answer = utilsLib.sortByNumber(answer, 'duration');
+  answer = setLabelsForDuration(answer);
+
+  return answer;
+}
+
+function groupByDuration(source) {
   var replies = [];
   var countMoreThan10 = 0;
 
-  answer.forEach(function(a) {
+  source.forEach(function(a) {
     if (a.duration > 0 && a.duration < 10) {
       replies.push(a);
-    } else {
+    } else if (a.duration > 10) {
       countMoreThan10++;
     }
   })
@@ -20,10 +28,11 @@ function getData() {
     n: countMoreThan10
   })
 
-  replies = utilsLib.sortByNumber(replies, 'duration');
+  return replies;
+}
 
-  // set label
-  replies.forEach(function(r) {
+function setLabelsForDuration(array) {
+  array.forEach(function(r) {
     if (r.duration === 10) {
       r.duration = '10 hours or more';
     } else if (r.duration === 1) {
@@ -33,7 +42,8 @@ function getData() {
     }
   })
 
-  utilsLib.publishData('events-per-duration', replies);
+  return array;
 }
 
-getData();
+exports.getData = getData;
+exports.groupByDuration = groupByDuration;
