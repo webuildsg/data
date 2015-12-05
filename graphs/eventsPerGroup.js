@@ -15,31 +15,38 @@ function getData(source) {
 function addByGroupNameAndUrl(source) {
   var groups = [];
   var answer = [];
-  var attr = 'group_name';
 
   source.forEach(function(file) {
     var data = require('.' + file);
 
     data.events.forEach(function(ev) {
-      var attribute = ev[ attr ];
+      var attribute = ev[ 'group_name' ];
 
-      if (groups.indexOf(attribute) < 0) {
-        if (attribute) {
-          groups.push(attribute)
-          answer.push({
-            group: attribute,
-            n: 1,
-            url: ev.group_url
-          })
-        }
-      } else {
-        answer.forEach(function(a) {
-          if (a.group === ev[ attr ]) {
-            a.n += 1;
-          }
+      if (groupNotInList(groups, attribute)) {
+        groups.push(attribute)
+        answer.push({
+          group: attribute,
+          n: 1,
+          url: ev.group_url
         })
+      } else {
+        answer = increaseCountOfGraph(answer, attribute);
       }
     })
+  })
+
+  return answer;
+}
+
+function groupNotInList(groups, attribute) {
+  return groups.indexOf(attribute) < 0 && attribute;
+}
+
+function increaseCountOfGraph(answer, attribute) {
+  answer.forEach(function(a) {
+    if (a.group === attribute) {
+      a.n += 1;
+    }
   })
 
   return answer;
@@ -71,14 +78,14 @@ function removeLocationString(array) {
     group = eachItem.group.replace(' SG', '');
     eachItem.group = group;
 
-    // remove "/groups" from facebook group url for Facebook Pages/Groups
-    var url = eachItem.url;
-    if (url.indexOf('www.facebook.com/groups') > -1) {
-      eachItem.url = url.replace('/groups', '')
-    }
+    eachItem.url = correctFacebookUrl(eachItem.url);
   })
 
   return array;
+}
+
+function correctFacebookUrl(url) {
+  return url.indexOf('www.facebook.com/groups') > -1 ? url.replace('/groups', ''): url;
 }
 
 exports.getData = getData;
