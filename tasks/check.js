@@ -1,7 +1,5 @@
 'use strict';
 
-// check that the json files have the required format
-
 var utilsLib = require('./utils');
 
 function metaNode(data) {

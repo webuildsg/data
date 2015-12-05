@@ -1,8 +1,5 @@
 'use strict';
 
-// get an array of objects
-// each number is the total number of events in the day of the week
-
 var utilsLib = require('../tasks/utils');
 
 function getData() {

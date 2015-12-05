@@ -1,8 +1,5 @@
 'use strict';
 
-// get an array of numbers
-// each number is the total number of events in a week
-
 var utilsLib = require('../tasks/utils');
 var moment = require('moment-timezone');
 

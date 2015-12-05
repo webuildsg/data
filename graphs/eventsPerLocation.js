@@ -1,7 +1,5 @@
 'use strict';
 
-// get a list of popular locations for events
-
 var utilsLib = require('../tasks/utils');
 var overlap = require('word-overlap');
 var _ = require('lodash');
