@@ -1,60 +1,65 @@
 'use strict';
 
 var utilsLib = require('../tasks/utils');
+var _ = require('lodash');
 
-function insertRubyRepo(repo, repoList) {
-  var existCount = 0;
-  var index = -1;
-
-  if (!repoList.length) {
-    return [ repo ];
-  }
-
-  repoList.forEach(function(eachRepo, i) {
-    if (repo.name === eachRepo.name) {
-      existCount++;
-      index = i;
-    }
-  })
-
-  if (existCount > 0) {
-    repoList[ index ] = repo;
-  }
-
-  if (!existCount) {
-    repoList.push(repo)
-  }
-
-  return repoList;
-}
-
-function getData(language) {
+function getData(source) {
   var answer = [];
+  var languages = [];
 
-  utilsLib.listFilePaths('repos').forEach(function(file) {
+  source.forEach(function(file) {
     var data = require('.' + file);
 
     data.repos.forEach(function(repo) {
-      if (repo.language && repo.language.toLowerCase() === language.toLowerCase()) {
-        answer = insertRubyRepo(repo, answer);
+      if (languages.indexOf(repo.language) < 0 && repo.language !== null) {
+        answer.push({
+          language: repo.language,
+          n: 1,
+          repos: [ {
+            name: repo.name,
+            url: repo.html_url,
+            stars: repo.stargazers_count
+          } ]
+        })
+        languages.push(repo.language)
+      } else {
+        answer.forEach(function(el) {
+          if (el.language === repo.language) {
+            el.repos = addUniq(repo, el.repos);
+            el.n = el.repos.length;
+          }
+        })
       }
     })
   })
 
-  answer.forEach(function(repo) {
-    console.log('URL: ' + repo.html_url + '   STARS: ' + repo.stargazers_count);
-  })
-
-  console.log('******* Total ' + language + ' repos: ' + answer.length + '*********** \n')
+  answer = utilsLib.sortByAlphabet(answer, 'language');
+  return answer;
 }
 
-getData('JavaScript');
-getData('Ruby');
-getData('CSS');
-getData('Objective-c');
-getData('Python');
-getData('PHP');
-getData('Java');
-getData('HTML');
-getData('Swift');
-getData('Haskell');
+function addUniq(element, list) {
+  var found = false;
+  var newElement = {
+    name: element.name,
+    url: element.html_url,
+    stars: element.stargazers_count
+  };
+
+  list.forEach(function(each) {
+    if (each.name === element.name) {
+      if (element.name === 'angularjs-pdf') {
+        console.log(element.stargazers_count + '    ' + each.stars)
+      }
+      each.stars = element.stargazers_count;
+      found = true;
+    }
+  })
+
+  if (!found) {
+    list.push(newElement);
+  }
+
+  return list;
+}
+
+exports.getData = getData;
