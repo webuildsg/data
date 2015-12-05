@@ -1,24 +1,9 @@
 'use strict';
 
-var utilsLib = require('../tasks/utils');
 var moment = require('moment-timezone');
 
-function getDayOfWeek(ev) {
-  return moment(ev.formatted_time, 'DD MMM YYYY, ddd, h:mm a').format('dddd');
-}
-
-function getData() {
-  var type = 'events';
-  var answer = {
-    'Monday': 0,
-    'Tuesday': 0,
-    'Wednesday': 0,
-    'Thursday': 0,
-    'Friday': 0,
-    'Saturday': 0,
-    'Sunday': 0
-  };
-  var replies = [
+function getData(source) {
+  var answer = [
     { day: 'Monday', n: 0 },
     { day: 'Tuesday', n: 0 },
     { day: 'Wednesday', n: 0 },
@@ -28,21 +13,34 @@ function getData() {
     { day: 'Sunday', n: 0 }
   ];
 
-  utilsLib.listFilePaths(type).forEach(function(file) {
-    var data = require('.' + file);
+  source.forEach(function(filename) {
+    var data = require('.' + filename);
 
     data.events.forEach(function(ev) {
-      answer[ getDayOfWeek(ev) ] += 1;
+      answer = insertEventsByDay(ev, answer);
     })
   })
 
-  replies.forEach(function(r) {
-    r.n = answer[ r.day ];
-  })
-
-  utilsLib.publishData('events-per-day-of-week', replies);
+  return answer;
 }
 
-getData();
+function insertEventsByDay(ev, totalEvents) {
+  var isDayFound = false;
+
+  totalEvents.forEach(function(element) {
+    if (!isDayFound && element.day === getDayOfWeek(ev)) {
+      isDayFound = true;
+      element.n += 1;
+    }
+  })
+
+  return totalEvents;
+}
+
+function getDayOfWeek(ev) {
+  return moment(ev.formatted_time, 'DD MMM YYYY, ddd, h:mm a').format('dddd');
+}
 
 exports.getDayOfWeek = getDayOfWeek;
+exports.insertEventsByDay = insertEventsByDay;
+exports.getData = getData;

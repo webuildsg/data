@@ -113,7 +113,7 @@ function publishData(name, data) {
       console.log(err)
     }
 
-    // console.log('File public/data/' + name + '.json saved!');
+    console.log('File public/data/' + name + '.json saved!');
   });
 }
 
