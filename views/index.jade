@@ -51,6 +51,11 @@ html(lang='en')
               span
                 include ./icons/clock.jade
               p.graph-name event time of day
+          li(class="searchable", data-index="meetup event location venu")
+            a(href="/dataset/events-per-location")
+              span
+                include ./icons/clock.jade
+              p.graph-name event time of day
 
       include ./partials/footer.jade
     script(src="/public/js/script.js")
