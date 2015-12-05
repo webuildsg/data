@@ -31,7 +31,6 @@ function getData(source) {
   })
 
   answer = utilsLib.sortByAlphabet(answer, 'language');
-  console.log(answer);
   return answer;
 }
 
