@@ -44,6 +44,9 @@
     "notes": "0.0.4"
   },
   "dependencies": {
-    "moment-timezone": "^0.4.1"
+    "geocoder": "^0.2.2",
+    "lodash": "^3.10.1",
+    "moment-timezone": "^0.4.1",
+    "word-overlap": "^2.4.1"
   }
 }
