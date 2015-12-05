@@ -90,3 +90,4 @@ function correctFacebookUrl(url) {
 
 exports.getData = getData;
 exports.removeLocationString = removeLocationString;
+exports.correctFacebookUrl = correctFacebookUrl;
