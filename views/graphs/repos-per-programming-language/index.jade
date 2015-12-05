@@ -1,0 +1,80 @@
+doctype
+html(lang='en')
+  include ./../../partials/head.jade
+  body
+    //if lt IE 9
+      p.chromeframe Your browser is <em>ancient!</em> <a href='http://browsehappy.com/'>Upgrade to a cool new browser</a> to experience this site!
+    div.wrapper
+      include ./../../partials/header.jade
+
+      .container
+        .graph-section
+          h3 repositories per programming languages
+          ul#select-language.select-lang
+            li
+              input(type="radio" name="language" id="language-c")
+              label C
+            li
+              input(type="radio" name="language" id="language-c++")
+              label C++
+            li
+              input(type="radio" name="language" id="language-clojure")
+              label Clojure
+            li
+              input(type="radio" name="language" id="language-coffeescript")
+              label CoffeeScript
+            li
+              input(type="radio" name="language" id="language-css")
+              label CSS
+            li
+              input(type="radio" name="language" id="language-go")
+              label Go
+            li
+              input(type="radio" name="language" id="language-haskell")
+              label Haskell
+            li
+              input(type="radio" name="language" id="language-html")
+              label HTML
+            li
+              input(type="radio" name="language" id="language-java")
+              label Java
+            li
+              input(type="radio" name="language" id="language-javascript")
+              label JavaScript
+            li
+              input(type="radio" name="language" id="language-julia")
+              label Julia
+            li
+              input(type="radio" name="language" id="language-objective-c")
+              label Objective-C
+            li
+              input(type="radio" name="language" id="language-php")
+              label PHP
+            li
+              input(type="radio" name="language" id="language-c")
+              label C
+            li
+              input(type="radio" name="language" id="language-python")
+              label Python
+            li
+              input(type="radio" name="language" id="language-r")
+              label R
+            li
+              input(type="radio" name="language" id="language-ruby")
+              label Ruby
+            li
+              input(type="radio" name="language" id="language-rust")
+              label Rust
+            li
+              input(type="radio" name="language" id="language-shell")
+              label Shell
+            li
+              input(type="radio" name="language" id="language-swift")
+              label Swift
+            li
+              input(type="radio" name="language" id="language-tex")
+              label Tex
+          .graph#repos-per-programming-language.list-lang
+      include ./../../partials/explain.jade
+      include ./../../partials/footer.jade
+    include ./../../partials/scripts.jade

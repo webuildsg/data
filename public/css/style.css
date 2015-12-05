@@ -98,6 +98,26 @@ h2 {
   width: 800px;
 }
 
+.select-lang li {
+  display: inline-block;
+  margin: .5em 2em;
+  width: 12%;
+}
+
+.list-lang p {
+  width: 100%;
+  margin: .5em auto;
+  text-align: center;
+  font-family: 'Roboto Slab',serif;
+}
+
+.list-lang p a {
+  color: #228db7; // #666;
+  background: #f8f4da;
+  text-decoration: none;
+  padding: .5em;
+}
+
 .splash {
   background-color: #fff;
   font-size: 1.5vw;

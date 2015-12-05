@@ -1,7 +1,6 @@
 'use strict';
 
 var utilsLib = require('../tasks/utils');
-var _ = require('lodash');
 
 function getData(source) {
   var answer = [];

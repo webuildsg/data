@@ -36,8 +36,94 @@
       </header>
       <div class="container">
         <div class="graph-section">
-          <h3>update activities per programming languages</h3>
-          <div id="repos-update-activities-per-programming" class="graph"></div>
+          <h3>repositories per programming languages</h3>
+          <ul id="select-language" class="select-lang">
+            <li>
+              <input type="radio" name="language" id="language-c" selected="selected">
+              <label>C</label>
+            </li>
+            <li>
+              <input type="radio" name="language" id="language-c++">
+              <label>C++</label>
+            </li>
+            <li>
+              <input type="radio" name="language" id="language-clojure">
+              <label>Clojure</label>
+            </li>
+            <li>
+              <input type="radio" name="language" id="language-coffeescript">
+              <label>CoffeeScript</label>
+            </li>
+            <li>
+              <input type="radio" name="language" id="language-css">
+              <label>CSS</label>
+            </li>
+            <li>
+              <input type="radio" name="language" id="language-go">
+              <label>Go</label>
+            </li>
+            <li>
+              <input type="radio" name="language" id="language-haskell">
+              <label>Haskell</label>
+            </li>
+            <li>
+              <input type="radio" name="language" id="language-html">
+              <label>HTML</label>
+            </li>
+            <li>
+              <input type="radio" name="language" id="language-java">
+              <label>Java</label>
+            </li>
+            <li>
+              <input type="radio" name="language" id="language-javascript">
+              <label>JavaScript</label>
+            </li>
+            <li>
+              <input type="radio" name="language" id="language-julia">
+              <label>Julia</label>
+            </li>
+            <li>
+              <input type="radio" name="language" id="language-objective-c">
+              <label>Objective-C</label>
+            </li>
+            <li>
+              <input type="radio" name="language" id="language-php">
+              <label>PHP</label>
+            </li>
+            <li>
+              <input type="radio" name="language" id="language-c">
+              <label>C</label>
+            </li>
+            <li>
+              <input type="radio" name="language" id="language-python">
+              <label>Python</label>
+            </li>
+            <li>
+              <input type="radio" name="language" id="language-r">
+              <label>R</label>
+            </li>
+            <li>
+              <input type="radio" name="language" id="language-ruby">
+              <label>Ruby</label>
+            </li>
+            <li>
+              <input type="radio" name="language" id="language-rust">
+              <label>Rust</label>
+            </li>
+            <li>
+              <input type="radio" name="language" id="language-shell">
+              <label>Shell</label>
+            </li>
+            <li>
+              <input type="radio" name="language" id="language-swift">
+              <label>Swift</label>
+            </li>
+            <li>
+              <input type="radio" name="language" id="language-tex">
+              <label>Tex</label>
+            </li>
+          </ul>
+          <div id="repos-per-programming-language" class="graph list-lang"></div>
         </div>
       </div>
       <div class="container">
@@ -73,6 +159,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.9/d3.min.js"></script>
     <script src="/public/js/line-graph.js"></script>
     <script src="/public/js/bar-graph.js"></script>
+    <script src="/public/js/options-list.js"></script>
     <script src="/public/js/script.js"></script>
   </body>
 </html>

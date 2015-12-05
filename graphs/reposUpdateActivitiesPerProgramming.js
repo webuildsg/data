@@ -7,7 +7,7 @@ function getData(source) {
   var answer = [];
   var languages = [];
 
-  utilsLib.listFilePaths('repos').forEach(function(file) {
+  source.forEach(function(file) {
     var data = require('.' + file);
 
     data.repos.forEach(function(repo) {

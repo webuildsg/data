@@ -37,7 +37,8 @@
     "process": true,
     "require": true,
     "setTimeout": true,
-    "window": true
+    "window": true,
+    "XMLHttpRequest": true
   },
 
   "asi": true,
