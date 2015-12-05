@@ -3,33 +3,33 @@
 var utilsLib = require('../tasks/utils');
 var moment = require('moment-timezone');
 
-function getTotalEventPerDay(events) {
-  return events.length;
-}
-
-function getData(attr) {
-  var type = 'events';
+function getData(source) {
   var answer = [];
   var currentWeek;
 
-  utilsLib.listFilePaths(type).forEach(function(file) {
+  source.forEach(function(file) {
     var data = require('.' + file);
+    var generatedAt = data.meta[ 'generated_at' ];
 
-    if (currentWeek !== utilsLib.getWeekNumber(data.meta[ attr ])) {
-      currentWeek = utilsLib.getWeekNumber(data.meta[ attr ]);
+    if (currentWeek !== utilsLib.getWeekNumber(generatedAt)) {
+      currentWeek = utilsLib.getWeekNumber(generatedAt);
       answer.push({
-        events: getTotalEventPerDay(data.events),
+        events: getTotalEventPerDay(data),
         week: currentWeek,
-        date: moment(data.meta[ attr ]).format('DD-MMM-YY'),
-        formatted_date: moment(data.meta[ attr ]).format('DD MMM YYYY'),
-        day: moment(data.meta[ attr ]).format('dddd')
+        date: moment(generatedAt).format('DD-MMM-YY'),
+        formatted_date: moment(generatedAt).format('DD MMM YYYY'),
+        day: moment(generatedAt).format('dddd')
       });
     } else {
-      answer[ answer.length - 1 ].events += getTotalEventPerDay(data.events);
+      answer[ answer.length - 1 ].events += getTotalEventPerDay(data);
     }
   })
 
-  utilsLib.publishData('events-per-week', answer);
+  return answer;
 }
 
-getData('generated_at');
+function getTotalEventPerDay(data) {
+  return data.events.length;
+}
+
+exports.getData = getData;
