@@ -38,7 +38,7 @@
   }
 
   [
-    'repos-per-programming',
+    'repos-update-activities-per-programming',
     'events-per-group',
     'events-per-day-of-week',
     'events-per-duration',
@@ -52,7 +52,7 @@
 
       var attr;
 
-      if (type === 'repos-per-programming') {
+      if (type === 'repos-update-activities-per-programming') {
         attr = 'language'
       } else if (type === 'events-per-group') {
         attr = 'group'

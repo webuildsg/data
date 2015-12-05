@@ -7,7 +7,7 @@ function getData(source) {
   var answer = [];
   var languages = [];
 
-  utilsLib.listFilePaths('repos').forEach(function(file) {
+  source.forEach(function(file) {
     var data = require('.' + file);
 
     data.repos.forEach(function(repo) {
@@ -15,15 +15,18 @@ function getData(source) {
         answer.push({
           language: repo.language,
           n: 1,
-          repos: [ repo.name ]
+          repos: [ {
+            name: repo.name,
+            url: repo.html_url,
+            stars: repo.stargazers_count
+          } ]
         })
         languages.push(repo.language)
       } else {
         answer.forEach(function(el) {
           if (el.language === repo.language) {
-            el.repos.push(repo.name)
-            el.repos = _.uniq(el.repos)
-            el.n += 1;
+            el.repos = addUniq(repo, el.repos);
+            el.n = el.repos.length;
           }
         })
       }
@@ -32,6 +35,28 @@ function getData(source) {
 
   answer = utilsLib.sortByAlphabet(answer, 'language');
   return answer;
+}
+
+function addUniq(element, list) {
+  var found = false;
+  var newElement = {
+    name: element.name,
+    url: element.html_url,
+    stars: element.stargazers_count
+  };
+
+  list.forEach(function(each) {
+    if (each.name === element.name) {
+      each.stars = element.stargazers_count;
+      found = true;
+    }
+  })
+
+  if (!found) {
+    list.push(newElement);
+  }
+
+  return list;
 }
 
 exports.getData = getData;
