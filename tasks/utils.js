@@ -5,6 +5,7 @@
 var fs = require('fs');
 var path = require('path');
 var moment = require('moment-timezone');
+var geojson = require('geojson');
 
 function listFilePaths(type) {
   var allFiles = fs.readdirSync('./data/' + type + '/v1');
@@ -17,6 +18,33 @@ function listFilePaths(type) {
   })
 
   return jsonFilePaths;
+}
+
+function publishData(name, data) {
+  return writeFile('public/data/' + name + '.json', JSON.stringify(data));
+}
+
+function publishGeojson(name, data) {
+  var geojsonData = geojson.parse(data.map(function(d) {
+    return {
+      name: d.complete,
+      address: d.complete,
+      lat: d.latitude,
+      lng: d.longitude
+    }
+  }), {Point: ['lat', 'lng']});
+
+  writeFile('public/data/' + name + '.geojson', JSON.stringify(geojsonData))
+}
+
+function writeFile(filename, data) {
+  fs.writeFile(filename, data, function (err) {
+    if (err) {
+      console.log(err)
+    }
+
+    console.log('File public/data/' + filename + '.json saved!');
+  });
 }
 
 function getDuration(event) {
@@ -107,19 +135,11 @@ function sortByNumber(array, property) {
   })
 }
 
-function publishData(name, data) {
-  fs.writeFile('public/data/' + name + '.json', JSON.stringify(data), function (err) {
-    if (err) {
-      console.log(err)
-    }
-
-    console.log('File public/data/' + name + '.json saved!');
-  });
-}
-
 exports.listFilePaths = listFilePaths;
-exports.getCurrentDayData = getCurrentDayData;
 exports.publishData = publishData;
+exports.publishGeojson = publishGeojson;
+
+exports.getCurrentDayData = getCurrentDayData;
 exports.getWeekNumber = getWeekNumber;
 exports.getDuration = getDuration;
 exports.getTimeOfEvent = getTimeOfEvent;

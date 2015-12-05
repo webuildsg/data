@@ -16,4 +16,5 @@ utilsLib.publishData('events-per-group', eventsPerGroupLib.getData(eventSource))
 
 eventsPerLocationLib.getData(eventSource, function(data) {
   utilsLib.publishData('events-per-location', data);
+  utilsLib.publishGeojson('events-per-location', data);
 })
