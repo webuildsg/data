@@ -36,6 +36,7 @@
     "node": true,
     "process": true,
     "require": true,
+    "setTimeout": true,
     "window": true
   },
 

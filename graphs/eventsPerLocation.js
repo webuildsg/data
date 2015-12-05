@@ -1,9 +1,59 @@
 'use strict';
 
-var utilsLib = require('../tasks/utils');
 var overlap = require('word-overlap');
 var _ = require('lodash');
-// var geocoder = require('geocoder');
+var geocoder = require('geocoder');
+
+function getData(source, callback) {
+  var locationList = [];
+
+  source.forEach(function(file) {
+    var data = require('.' + file).events;
+
+    data.forEach(function(eachData) {
+      locationList = groupLocations(eachData.location, locationList);
+    })
+  })
+
+  locationList = addPopularLocations(locationList);
+
+  getLatLong(locationList, function(list) {
+    return callback(list);
+  });
+}
+
+function addPopularLocations(list) {
+  return _.filter(list, function(eachItem) {
+    return eachItem.n > 4;
+  })
+}
+
+function getLatLong(list, callback) {
+  var progress = 0;
+
+  list.forEach(function(a, index) {
+    var interval = index * 200;
+
+    setTimeout(function() {
+      geocoder.geocode(a.complete, function(error, data){
+        if (error) {
+          console.log('FAIL: ', error);
+        }
+
+        if (data && data.results[ 0 ]) {
+          a.latitude = data.results[0].geometry.location.lat;
+          a.longitude = data.results[0].geometry.location.lng
+        }
+
+        progress++;
+
+        if (progress === list.length - 1) {
+          return callback(list);
+        }
+      })
+    }, interval);
+  })
+}
 
 function isEmptyList(list) {
   return !list.length;
@@ -56,10 +106,6 @@ function hasMatchingWords(word1, word2) {
   return overlap(word1, word2, overlapOptions).length > 2;
 }
 
-// function isNotAnExactMatch(str1, str2) {
-//   return str1 !== str2;
-// }
-
 function addUniqueLocation(locationList, location) {
   locationList.push(location);
   return _.uniq(locationList);
@@ -73,7 +119,7 @@ function replaceWithLongerString(originalString, newString) {
   return originalString;
 }
 
-function addPopularLocations(location, locationList) {
+function groupLocations(location, locationList) {
   if (hasSingleWord(location) || hasWord(location, 'TBA')) {
     return locationList;
   }
@@ -111,47 +157,5 @@ function addPopularLocations(location, locationList) {
   return locationList;
 }
 
-function getData() {
-  var locationList = [];
-  var answer = [];
-
-  utilsLib.listFilePaths('events').forEach(function(file) {
-    var data = require('.' + file).events;
-
-    data.forEach(function(eachData) {
-      locationList = addPopularLocations(eachData.location, locationList);
-    })
-  })
-
-  locationList.forEach(function(eachLocation) {
-    if (eachLocation.n > 4) {
-      answer.push(eachLocation)
-    }
-  })
-
-  // console.log(answer);
-  // console.log('\n\n' + answer.length)
-
-  // answer.forEach(function(a) {
-    // console.log(a.complete)
-
-    // https://stackoverflow.com/questions/16672561/how-to-slow-down-a-loop-with-settimeout-or-setinterval
-    // setInterval(function() {
-      // console.log(new Date())
-      // geocoder.geocode(a.complete, function(e, d){
-        // if (e) {
-          // console.log('FAIL', e);
-        // }
-
-        // if (d.results[ 0 ]) {
-          // console.log(d.results[0].geometry.location.lat + ',' + d.results[0].geometry.location.lng + '   :' + a.complete)
-        // } else {
-          // console.log('NOT FOUND: ' + a.complete)
-        // }
-      // })
-    // }, 3000);
-  // })
-}
-
-getData();
+exports.getData = getData;
 exports.addPopularLocations = addPopularLocations;
