@@ -17,9 +17,13 @@ function getData(source, callback) {
 
   locationList = addPopularLocations(locationList);
 
-  getLatLong(locationList, function(list) {
-    locationList = filterValidLatLong(list)
-    return callback(locationList);
+  getLatLong(locationList, function(error, list) {
+    if (error) {
+      return callback('Error')
+    }
+
+    locationList = filterValidLatLong(list);
+    return callback(null, locationList);
   });
 }
 
@@ -37,14 +41,21 @@ function filterValidLatLong(list) {
 
 function getLatLong(list, callback) {
   var progress = 0;
+  var errorCount = 0;
 
   list.forEach(function(a, index) {
     var interval = index * 200;
 
     setTimeout(function() {
-      geocoder.geocode(a.complete, function(error, data){
+      geocoder.geocode(a.complete, function(error, data) {
         if (error) {
-          console.log('FAIL: ', error);
+          console.log('ERROR: ', error);
+          return callback(error);
+        }
+
+        if (data.error_message) {
+          console.log('ERROR: ' + data.error_message)
+          errorCount++;
         }
 
         if (data && data.results[ 0 ]) {
@@ -53,12 +64,17 @@ function getLatLong(list, callback) {
         }
 
         progress++;
-
-        if (progress === list.length - 1) {
-          return callback(list);
-        }
       })
     }, interval);
+
+    if (errorCount) {
+      return callback('Error!');
+    }
+
+    if (progress === list.length - 1) {
+      return callback(null, list);
+    }
+
   })
 }
 

@@ -17,6 +17,7 @@ var eventsPerWeekLib = require('./eventsPerWeek');
 
 var reposPerWeekLib = require('./reposPerWeek');
 var reposMostActiveLib = require('./reposMostActive');
+var reposPerProgrammingLib = require('./reposPerProgramming');
 
 utilsLib.publishData('events-per-day-of-week', eventsPerDayOfWeekLib.getData(eventSource));
 utilsLib.publishData('events-per-duration', eventsPerDurationLib.getData(totalEventsByDuration));
@@ -26,8 +27,11 @@ utilsLib.publishData('events-per-week', eventsPerWeekLib.getData(eventSource));
 
 utilsLib.publishData('repos-per-week', reposPerWeekLib.getData(reposSource));
 utilsLib.publishData('repos-most-active', reposMostActiveLib.getData(reposSource));
+utilsLib.publishData('repos-per-programming', reposPerProgrammingLib.getData(reposSource));
 
-eventsPerLocationLib.getData(eventSource, function(data) {
-  utilsLib.publishData('events-per-location', data);
-  utilsLib.publishGeojson('events-per-location', data);
+eventsPerLocationLib.getData(eventSource, function(error, data) {
+  if (!error) {
+    utilsLib.publishData('events-per-location', data);
+    utilsLib.publishGeojson('events-per-location', data);
+  }
 })

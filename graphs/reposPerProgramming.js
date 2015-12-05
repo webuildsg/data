@@ -1,25 +1,28 @@
 'use strict';
 
 var utilsLib = require('../tasks/utils');
+var _ = require('lodash');
 
-function getData() {
-  var type = 'repos';
+function getData(source) {
   var answer = [];
   var languages = [];
 
-  utilsLib.listFilePaths(type).forEach(function(file) {
+  utilsLib.listFilePaths('repos').forEach(function(file) {
     var data = require('.' + file);
 
     data.repos.forEach(function(repo) {
       if (languages.indexOf(repo.language) < 0 && repo.language !== null) {
         answer.push({
           language: repo.language,
-          n: 1
+          n: 1,
+          repos: [ repo.name ]
         })
         languages.push(repo.language)
       } else {
         answer.forEach(function(el) {
           if (el.language === repo.language) {
+            el.repos.push(repo.name)
+            el.repos = _.uniq(el.repos)
             el.n += 1;
           }
         })
@@ -28,7 +31,8 @@ function getData() {
   })
 
   answer = utilsLib.sortByAlphabet(answer, 'language');
-  utilsLib.publishData('repos-per-programming', answer);
+  console.log(answer);
+  return answer;
 }
 
-getData();
+exports.getData = getData;
