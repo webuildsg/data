@@ -30,9 +30,7 @@
 
     reposPerProgrammingLanguageList.forEach(function(r) {
       if (r.language.toLowerCase() === language) {
-        console.log(r.language.toLowerCase())
         r.repos.forEach(function(repo) {
-          console.log(repo)
           repoList.innerHTML += '<p><a href="' + repo.url + '">' + repo.name + '</a> ★' + repo.stars + '</p>';
         })
       }
