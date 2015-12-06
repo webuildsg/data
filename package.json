@@ -1,10 +1,35 @@
 {
   "name": "data.webuild.sg",
   "version": "1.0.0",
-  "description": "store snapshot data for webuild.sg for events and repos",
-  "main": "index.js",
+  "description": "using data and graphs to inspire variety, openness and projects for the design and engineering community in Singapore",
+  "keywords": [
+    "archives",
+    "data",
+    "snapshot",
+    "events",
+    "meetups",
+    "repos",
+    "repositories",
+    "webuild.sg",
+    "developer",
+    "engineer",
+    "designer",
+    "open source",
+    "graphs",
+    "charts"
+  ],
+  "homepage": "https://github.com/webuildsg/data#readme",
+  "bugs": {
+    "url": "https://github.com/webuildsg/data/issues"
+  },
+  "license": "MIT",
+  "main": "index.html",
   "directories": {
     "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webuildsg/data.git"
   },
   "private": true,
   "scripts": {
@@ -17,23 +42,6 @@
     "test": "jshint graphs tasks test public/js && NODE_ENV=test mocha test --recursive && jsinspect ./tasks ./graphs -t 30 -i",
     "start": "http-server ./"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/webuildsg/data.git"
-  },
-  "keywords": [
-    "archives",
-    "data",
-    "events",
-    "repos",
-    "webuild.sg",
-    "developer"
-  ],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/webuildsg/data/issues"
-  },
-  "homepage": "https://github.com/webuildsg/data#readme",
   "devDependencies": {
     "chai": "^3.4.1",
     "gulp": "^3.9.0",
