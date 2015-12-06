@@ -23,7 +23,9 @@
 
   document.addEventListener('click', function(d) {
     var language = d.target.id.replace('language-', '');
-    if (!language) return;
+    if (!language){
+      return;
+    }
     repoList.innerHTML = '';
 
     reposPerProgrammingLanguageList.forEach(function(r) {
