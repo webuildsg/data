@@ -9,6 +9,11 @@
 1. clone this repository: `git clone git@github.com:webuildsg/data.git`
 - install all the required packages with `npm i -g http-server && npm i`
 - start the website with `npm start`
+- run all tests and linting with `npm test`
+- build `html` file from *.jade` templates with `npm build:html`
+- build all `*.json` data to plot graphs with `npm build:graph`
+- remove all built files with `npm run clean`
+- check that all data snapshot files are in the correct format with `npm run check`
 
 ##data
 

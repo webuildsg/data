@@ -12,7 +12,7 @@
     "build:graph": "node graphs",
     "build": "npm run build:html && npm run build:graph",
     "clean": "rm index.html && rm -rf dataset  && rm -rf public/data",
-    "status": "notes && npm outdated",
+    "status": "notes graphs tasks test views && npm outdated",
     "check": "node tasks/check",
     "test": "jshint graphs tasks test public/js && NODE_ENV=test mocha test --recursive && jsinspect ./tasks ./graphs -t 30 -i",
     "start": "http-server ./"
