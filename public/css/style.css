@@ -276,6 +276,34 @@ text {
   stroke-width: 0;
 }
 
+/* box list */
+
+.boxes {
+  padding: 0;
+}
+
+.boxes li {
+  display: inline-block;
+  width: 20%;
+  vertical-align: top;
+  border: 5px solid #228db7;
+  padding: 1em;
+  text-align: center;
+  border-radius: 10px;
+  height: 170px;
+  margin: 1em 2.3% 2em;
+}
+
+.big {
+  color: #228db7;
+  font-size: 4em;
+}
+
+.sm {
+  color: #666;
+  font-size: 1em;
+}
+
 /* responsive */
 @media only screen and (max-width: 960px) {
   .mobile-off {
