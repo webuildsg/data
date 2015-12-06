@@ -7,4 +7,10 @@ gulp.task('default', function() {
       pretty: true
     }))
     .pipe(gulp.dest('./'))
+
+  gulp.src('./views/graphs/**/*.jade')
+    .pipe(jade({
+      pretty: true
+    }))
+    .pipe(gulp.dest('./dataset'))
 });

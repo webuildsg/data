@@ -8,7 +8,7 @@
   },
   "private": true,
   "scripts": {
-    "build:html": "gulp && jade views/graphs/repos-per-week -o ./dataset/repos-per-week -P && jade views/graphs/events-per-week -o ./dataset/events-per-week -P && jade views/graphs/repos-update-activities-per-programming -o ./dataset/repos-update-activities-per-programming -P && jade views/graphs/repos-per-programming-language -o ./dataset/repos-per-programming-language -P && jade views/graphs/events-per-group -o ./dataset/events-per-group -P && jade views/graphs/repos-most-active -o ./dataset/repos-most-active -P && jade views/graphs/events-per-day-of-week -o ./dataset/events-per-day-of-week -P && jade views/graphs/events-per-duration -o ./dataset/events-per-duration -P && jade views/graphs/events-per-time-of-day -o ./dataset/events-per-time-of-day -P && jade views/graphs/events-per-location -o ./dataset/events-per-location -P",
+    "build:html": "gulp",
     "build:graph": "node graphs",
     "build": "npm run build:html && npm run build:graph",
     "clean": "rm index.html && rm -rf dataset  && rm -rf public/data",
