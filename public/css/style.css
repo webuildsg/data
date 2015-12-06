@@ -98,6 +98,10 @@ h2 {
   width: 800px;
 }
 
+.select-lang {
+  padding: 0
+}
+
 .select-lang li {
   display: inline-block;
   margin: .5em 2em;
@@ -314,6 +318,14 @@ text {
     max-width: 100%;
     display: block;
   }
+
+  .select-lang li {
+    width: 14%;
+  }
+
+  .boxes li {
+    width: 45%;
+  }
 }
 
 @media only screen and (max-width: 800px) {
@@ -329,6 +341,10 @@ text {
   .splash {
     display: none;
   }
+
+  .select-lang li {
+    width: 30%;
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -337,5 +353,9 @@ text {
   }
   .bar {
     height: 32px;
+  }
+
+  .boxes li {
+    width: 98%;
   }
 }
