@@ -108,6 +108,10 @@ h2 {
   width: 12%;
 }
 
+.select-lang label *{
+  pointer-events: none;
+}
+
 .list-lang p {
   width: 100%;
   margin: .5em auto;

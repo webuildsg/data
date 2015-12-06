@@ -22,7 +22,10 @@
   })
 
   document.addEventListener('click', function(d) {
-    var language = d.srcElement.id.replace('language-', '');
+    var language = d.target.id.replace('language-', '');
+    if (!language){
+      return;
+    }
     repoList.innerHTML = '';
 
     reposPerProgrammingLanguageList.forEach(function(r) {
