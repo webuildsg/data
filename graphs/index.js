@@ -4,6 +4,8 @@ var utilsLib = require('../tasks/utils');
 
 var eventSource = utilsLib.listFilePaths('events');
 var reposSource = utilsLib.listFilePaths('repos');
+var eventSource2015 = utilsLib.listFilePaths('events', '2015');
+var reposSource2015 = utilsLib.listFilePaths('repos', '2015');
 
 var totalEventsByDuration = utilsLib.getTotalByProperty('events', 'duration');
 var totalEventsByTime = utilsLib.getTotalByProperty('events', 'time');
@@ -19,6 +21,8 @@ var reposPerWeekLib = require('./reposPerWeek');
 var reposMostActiveLib = require('./reposMostActive');
 var reposPerProgrammingLib = require('./reposPerProgramming');
 var reposUpdateActivePerProgrammingLib = require('./reposUpdateActivitiesPerProgramming');
+
+var overviewLib = require('./overview');
 
 utilsLib.publishData('events-per-day-of-week', eventsPerDayOfWeekLib.getData(eventSource));
 utilsLib.publishData('events-per-duration', eventsPerDurationLib.getData(totalEventsByDuration));
@@ -37,3 +41,5 @@ eventsPerLocationLib.getData(eventSource, function(error, data) {
     utilsLib.publishGeojson('events-per-location', data);
   }
 })
+
+utilsLib.publishData('overview', overviewLib.getData(reposSource2015, eventSource2015));

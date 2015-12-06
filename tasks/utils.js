@@ -7,17 +7,33 @@ var path = require('path');
 var moment = require('moment-timezone');
 var geojson = require('geojson');
 
-function listFilePaths(type) {
+function listFilePaths(type, year) {
   var allFiles = fs.readdirSync('./data/' + type + '/v1');
   var jsonFilePaths = [];
 
   allFiles.forEach(function(file) {
-    if (path.extname(file) === '.json') {
-      jsonFilePaths.push('./data/' + type + '/v1/' + file);
+    var filepath = './data/' + type + '/v1/' + file;
+
+    if (hasFileExt(file, '.json')) {
+      if (!year) {
+        jsonFilePaths.push(filepath)
+      }
+
+      if (hasYear(file, year)) {
+        jsonFilePaths.push(filepath)
+      }
     }
   })
 
   return jsonFilePaths;
+}
+
+function hasYear(file, year) {
+  return file.indexOf('_' + year + '_') > -1
+}
+
+function hasFileExt(file, ext) {
+  return path.extname(file) === ext
 }
 
 function publishData(name, data) {
@@ -43,7 +59,7 @@ function writeFile(filename, data) {
       console.log(err)
     }
 
-    console.log('File public/data/' + filename + '.json saved!');
+    console.log('File public/data/' + filename + ' saved!');
   });
 }
 
@@ -134,6 +150,8 @@ function sortByNumber(array, property) {
     return 0;
   })
 }
+
+listFilePaths('repos', '2014')
 
 exports.listFilePaths = listFilePaths;
 exports.publishData = publishData;
