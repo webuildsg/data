@@ -19,11 +19,13 @@ A daily scheduler stores the data snapshots for [events](https://github.com/webu
 - folder `data/{type}/v1/{filename}` for version compatibility in case there are api changes in the future
 - `{type}` includes `repos` or `events`
 
-#contribute
+##contribute
+
+This project is an [OPEN Open source project](http://openopensource.org/).
 
 Please see [`CONTRIBUTING.md`](CONTRIBUTING.md) for details.
 
-#credits
+##credits
 
 - [Icomoon free SVG icons](https://icomoon.io/#icons-icomoon)
 
