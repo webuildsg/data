@@ -10,16 +10,8 @@ function getData(source) {
     var data = require('.' + file);
 
     data.repos.forEach(function(repo) {
-      if (languages.indexOf(repo.language) < 0 && repo.language !== null) {
-        answer.push({
-          language: repo.language,
-          n: 1,
-          repos: [ {
-            name: repo.name,
-            url: repo.html_url,
-            stars: repo.stargazers_count
-          } ]
-        })
+      if (isValidNewLanguage(languages, repo)) {
+        answer = insertNewLanguage(answer, repo)
         languages.push(repo.language)
       } else {
         answer.forEach(function(el) {
@@ -34,6 +26,24 @@ function getData(source) {
 
   answer = utilsLib.sortByAlphabet(answer, 'language');
   return answer;
+}
+
+function insertNewLanguage(list, element) {
+  list.push({
+    language: element.language,
+    n: 1,
+    repos: [ {
+      name: element.name,
+      url: element.html_url,
+      stars: element.stargazers_count
+    } ]
+  })
+
+  return list;
+}
+
+function isValidNewLanguage(list, repo) {
+  return list.indexOf(repo.language) < 0 && repo.language !== null
 }
 
 function addUniq(element, list) {
@@ -59,3 +69,4 @@ function addUniq(element, list) {
 }
 
 exports.getData = getData;
+exports.isValidNewLanguage = isValidNewLanguage;

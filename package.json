@@ -14,7 +14,7 @@
     "clean": "rm index.html && rm -rf dataset  && rm -rf public/data",
     "status": "notes && npm outdated",
     "check": "node tasks/check",
-    "test": "jshint graphs tasks test public/js && NODE_ENV=test mocha test --recursive && jsinspect ./tasks ./graphs -t 30",
+    "test": "jshint graphs tasks test public/js && NODE_ENV=test mocha test --recursive && jsinspect ./tasks ./graphs -t 30 -i",
     "start": "http-server ./"
   },
   "repository": {

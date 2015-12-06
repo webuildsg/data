@@ -1,7 +1,8 @@
 'use strict';
 
-var utilsLib = require('../tasks/utils');
-var _ = require('lodash');
+var utilsLib = require('../tasks/utils')
+var reposPerProgrammingLib = require('./reposPerProgramming')
+var _ = require('lodash')
 
 function getData(source) {
   var answer = [];
@@ -11,12 +12,8 @@ function getData(source) {
     var data = require('.' + file);
 
     data.repos.forEach(function(repo) {
-      if (languages.indexOf(repo.language) < 0 && repo.language !== null) {
-        answer.push({
-          language: repo.language,
-          n: 1,
-          repos: [ repo.name ]
-        })
+      if (reposPerProgrammingLib.isValidNewLanguage(languages, repo)) {
+        answer = insertNewLanguage(answer, repo)
         languages.push(repo.language)
       } else {
         answer.forEach(function(el) {
@@ -32,6 +29,16 @@ function getData(source) {
 
   answer = utilsLib.sortByAlphabet(answer, 'language');
   return answer;
+}
+
+function insertNewLanguage(list, element) {
+  list.push({
+    language: element.language,
+    n: 1,
+    repos: [ element.name ]
+  })
+
+  return list;
 }
 
 exports.getData = getData;
