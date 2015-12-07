@@ -1,3 +1,5 @@
+![header picture](public/img/header.png)
+
 #data.webuild.sg
 
 [![Dependency Status](https://gemnasium.com/webuildsg/data.svg)](https://gemnasium.com/webuildsg/data) [![Build Status](https://travis-ci.org/webuildsg/data.svg)](https://travis-ci.org/webuildsg/data)
