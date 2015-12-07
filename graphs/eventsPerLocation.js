@@ -11,7 +11,7 @@ function getData(source, callback) {
     var data = require('.' + file).events;
 
     data.forEach(function(eachData) {
-      locationList = groupLocations(eachData.location, locationList);
+      locationList = groupLocations(eachData, locationList);
     })
   })
 
@@ -23,8 +23,55 @@ function getData(source, callback) {
     }
 
     locationList = filterValidLatLong(list);
+
     return callback(null, locationList);
   });
+}
+
+function groupLocations(eachData, locationList) {
+  var location = eachData.location;
+  var userGroup = eachData.group_name;
+
+  if (hasSingleWord(location) || hasWord(location, 'TBA')) {
+    return locationList;
+  }
+
+  if (isEmptyList(locationList)) {
+    return insertFirstNode(location);
+  }
+
+  var found = false;
+
+  locationList.forEach(function(eachLocation) {
+    if (!found) {
+      if (eachLocation.complete === location) {
+        found = true;
+        eachLocation.n += 1;
+        eachLocation.groups.push(userGroup)
+      } else {
+        if (hasMatchingWords(eachLocation.complete, location)) {
+          found = true;
+          eachLocation.n += 1;
+          eachLocation.all = addUniqueLocation(eachLocation.all, location);
+          eachLocation.complete = replaceWithLongerString(eachLocation.complete, location);
+          eachLocation.groups.push(userGroup)
+        }
+      }
+
+      eachLocation.groups = _.uniq(eachLocation.groups)
+    }
+  })
+
+  if (!found) {
+    locationList.push({
+      complete: location,
+      all: [ location ],
+      n: 1,
+      groups: [ userGroup ]
+    })
+  }
+
+  return locationList;
 }
 
 function addPopularLocations(list) {
@@ -64,17 +111,16 @@ function getLatLong(list, callback) {
         }
 
         progress++;
+
+        if (errorCount) {
+          return callback('Error!');
+        }
+
+        if (progress === list.length - 1) {
+          return callback(null, list);
+        }
       })
     }, interval);
-
-    if (errorCount) {
-      return callback('Error!');
-    }
-
-    if (progress === list.length - 1) {
-      return callback(null, list);
-    }
-
   })
 }
 
@@ -140,44 +186,6 @@ function replaceWithLongerString(originalString, newString) {
   }
 
   return originalString;
-}
-
-function groupLocations(location, locationList) {
-  if (hasSingleWord(location) || hasWord(location, 'TBA')) {
-    return locationList;
-  }
-
-  if (isEmptyList(locationList)) {
-    return insertFirstNode(location);
-  }
-
-  var found = false;
-
-  locationList.forEach(function(eachLocation) {
-    if (!found) {
-      if (eachLocation.complete === location) {
-        found = true;
-        eachLocation.n += 1;
-      } else {
-        if (hasMatchingWords(eachLocation.complete, location)) {
-          found = true;
-          eachLocation.n += 1;
-          eachLocation.all = addUniqueLocation(eachLocation.all, location);
-          eachLocation.complete = replaceWithLongerString(eachLocation.complete, location);
-        }
-      }
-    }
-  })
-
-  if (!found) {
-    locationList.push({
-      complete: location,
-      all: [ location ],
-      n: 1
-    })
-  }
-
-  return locationList;
 }
 
 exports.getData = getData;

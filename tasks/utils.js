@@ -43,7 +43,7 @@ function publishData(name, data) {
 function publishGeojson(name, data) {
   var geojsonData = geojson.parse(data.map(function(d) {
     return {
-      name: d.complete,
+      groups: d.groups,
       address: d.complete,
       lat: d.latitude,
       lng: d.longitude
