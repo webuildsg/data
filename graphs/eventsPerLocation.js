@@ -3,6 +3,7 @@
 var overlap = require('word-overlap');
 var _ = require('lodash');
 var geocoder = require('geocoder');
+var config = require('./config');
 
 function getData(source, callback) {
   var locationList = [];
@@ -94,7 +95,7 @@ function getLatLong(list, callback) {
     var interval = index * 200;
 
     setTimeout(function() {
-      geocoder.geocode(a.complete, function(error, data) {
+      geocoder.geocode(fixAddressForGeocoding(a.complete), function(error, data) {
         if (error) {
           console.log('ERROR: ', error);
           return callback(error);
@@ -122,6 +123,16 @@ function getLatLong(list, callback) {
       })
     }, interval);
   })
+}
+
+function fixAddressForGeocoding(address) {
+  config.addressesToFix.forEach(function(s) {
+    if (address.indexOf(s) > -1) {
+      address = address.replace(s, '')
+    }
+  })
+
+  return address;
 }
 
 function isEmptyList(list) {
