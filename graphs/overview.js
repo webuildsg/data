@@ -1,6 +1,6 @@
-'use strict';
+'use strict'
 
-function getData(reposSource, eventSource) {
+function getData (reposSource, eventSource) {
   return [
     {
       total_updates_for_repos: getTotalUpdatesForRepos(reposSource),
@@ -11,52 +11,52 @@ function getData(reposSource, eventSource) {
   ]
 }
 
-function getTotalUpdatesForRepos(reposSource) {
-  var answer = 0;
+function getTotalUpdatesForRepos (reposSource) {
+  var answer = 0
 
-  reposSource.forEach(function(filename) {
-    answer += require('.' + filename).repos.length;
+  reposSource.forEach(function (filename) {
+    answer += require('.' + filename).repos.length
   })
 
-  return answer;
+  return answer
 }
 
-function getTotalUniqRepos(reposSource) {
-  var answer = [];
+function getTotalUniqRepos (reposSource) {
+  var answer = []
 
-  reposSource.forEach(function(filename) {
-    require('.' + filename).repos.forEach(function(repo) {
+  reposSource.forEach(function (filename) {
+    require('.' + filename).repos.forEach(function (repo) {
       if (answer.indexOf(repo.name) < 0) {
         answer.push(repo.name)
       }
     })
   })
 
-  return answer.length;
+  return answer.length
 }
 
-function getTotalEvents(eventSource) {
-  var answer = 0;
+function getTotalEvents (eventSource) {
+  var answer = 0
 
-  eventSource.forEach(function(filename) {
-    answer += require('.' + filename).events.length;
+  eventSource.forEach(function (filename) {
+    answer += require('.' + filename).events.length
   })
 
-  return answer;
+  return answer
 }
 
-function getTotalGroups(eventSource) {
-  var answer = [];
+function getTotalGroups (eventSource) {
+  var answer = []
 
-  eventSource.forEach(function(filename) {
-    require('.' + filename).events.forEach(function(ev) {
+  eventSource.forEach(function (filename) {
+    require('.' + filename).events.forEach(function (ev) {
       if (answer.indexOf(ev.group_name) < 0) {
         answer.push(ev.group_name)
       }
     })
   })
 
-  return answer.length;
+  return answer.length
 }
 
-exports.getData =  getData;
+exports.getData = getData

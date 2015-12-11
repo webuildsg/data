@@ -41,7 +41,7 @@
     "deploy": "git push origin gh-pages",
     "start": "http-server ./",
     "status": "notes graphs tasks test views && npm outdated",
-    "test": "jshint graphs tasks test public/js && NODE_ENV=test mocha test --recursive && jsinspect ./tasks ./graphs -t 30 -i"
+    "test": "jshint graphs tasks test public/js && standard tasks/**/*.js graphs/**/*.js && NODE_ENV=test mocha test --recursive && jsinspect ./tasks ./graphs -t 30 -i"
   },
   "devDependencies": {
     "chai": "^3.4.1",
@@ -52,7 +52,8 @@
     "jshint": "^2.8.0",
     "jsinspect": "^0.7.2",
     "mocha": "^2.3.3",
-    "notes": "0.0.4"
+    "notes": "0.0.4",
+    "standard": "^5.4.1"
   },
   "dependencies": {
     "geocoder": "^0.2.2",

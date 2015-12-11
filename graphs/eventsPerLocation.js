@@ -1,60 +1,60 @@
-'use strict';
+'use strict'
 
-var overlap = require('word-overlap');
-var _ = require('lodash');
-var geocoder = require('geocoder');
-var config = require('./config');
+var overlap = require('word-overlap')
+var _ = require('lodash')
+var geocoder = require('geocoder')
+var config = require('./config')
 
-function getData(source, callback) {
-  var locationList = [];
+function getData (source, callback) {
+  var locationList = []
 
-  source.forEach(function(file) {
-    var data = require('.' + file).events;
+  source.forEach(function (file) {
+    var data = require('.' + file).events
 
-    data.forEach(function(eachData) {
-      locationList = groupLocations(eachData, locationList);
+    data.forEach(function (eachData) {
+      locationList = groupLocations(eachData, locationList)
     })
   })
 
-  locationList = addPopularLocations(locationList);
+  locationList = addPopularLocations(locationList)
 
-  getLatLong(locationList, function(error, list) {
+  getLatLong(locationList, function (error, list) {
     if (error) {
       return callback('Error')
     }
 
-    locationList = filterValidLatLong(list);
+    locationList = filterValidLatLong(list)
 
-    return callback(null, locationList);
-  });
+    return callback(null, locationList)
+  })
 }
 
-function groupLocations(eachData, locationList) {
-  var location = eachData.location;
-  var userGroup = eachData.group_name;
+function groupLocations (eachData, locationList) {
+  var location = eachData.location
+  var userGroup = eachData.group_name
 
   if (hasSingleWord(location) || hasWord(location, 'TBA')) {
-    return locationList;
+    return locationList
   }
 
   if (isEmptyList(locationList)) {
-    return insertFirstNode(location);
+    return insertFirstNode(location)
   }
 
-  var found = false;
+  var found = false
 
-  locationList.forEach(function(eachLocation) {
+  locationList.forEach(function (eachLocation) {
     if (!found) {
       if (eachLocation.complete === location) {
-        found = true;
-        eachLocation.n += 1;
+        found = true
+        eachLocation.n += 1
         eachLocation.groups.push(userGroup)
       } else {
         if (hasMatchingWords(eachLocation.complete, location)) {
-          found = true;
-          eachLocation.n += 1;
-          eachLocation.all = addUniqueLocation(eachLocation.all, location);
-          eachLocation.complete = replaceWithLongerString(eachLocation.complete, location);
+          found = true
+          eachLocation.n += 1
+          eachLocation.all = addUniqueLocation(eachLocation.all, location)
+          eachLocation.complete = replaceWithLongerString(eachLocation.complete, location)
           eachLocation.groups.push(userGroup)
         }
       }
@@ -72,92 +72,92 @@ function groupLocations(eachData, locationList) {
     })
   }
 
-  return locationList;
+  return locationList
 }
 
-function addPopularLocations(list) {
-  return _.filter(list, function(eachItem) {
-    return eachItem.n > 4;
+function addPopularLocations (list) {
+  return _.filter(list, function (eachItem) {
+    return eachItem.n > 4
   })
 }
 
-function filterValidLatLong(list) {
-  return _.filter(list, function(l) {
-    return l.latitude && l.longitude;
+function filterValidLatLong (list) {
+  return _.filter(list, function (l) {
+    return l.latitude && l.longitude
   })
 }
 
-function getLatLong(list, callback) {
-  var progress = 0;
-  var errorCount = 0;
+function getLatLong (list, callback) {
+  var progress = 0
+  var errorCount = 0
 
-  list.forEach(function(a, index) {
-    var interval = index * 200;
+  list.forEach(function (a, index) {
+    var interval = index * 200
 
-    setTimeout(function() {
-      geocoder.geocode(fixAddressForGeocoding(a.complete), function(error, data) {
+    setTimeout(function () {
+      geocoder.geocode(fixAddressForGeocoding(a.complete), function (error, data) {
         if (error) {
-          console.log('ERROR: ', error);
-          return callback(error);
+          console.log('ERROR: ', error)
+          return callback(error)
         }
 
         if (data.error_message) {
           console.log('ERROR: ' + data.error_message)
-          errorCount++;
+          errorCount++
         }
 
         if (data && data.results[ 0 ]) {
-          a.latitude = data.results[0].geometry.location.lat;
+          a.latitude = data.results[0].geometry.location.lat
           a.longitude = data.results[0].geometry.location.lng
         }
 
-        progress++;
+        progress++
 
         if (errorCount) {
-          return callback('Error!');
+          return callback('Error!')
         }
 
         if (progress === list.length - 1) {
-          return callback(null, list);
+          return callback(null, list)
         }
       })
-    }, interval);
+    }, interval)
   })
 }
 
-function fixAddressForGeocoding(address) {
-  config.addressesToFix.forEach(function(s) {
+function fixAddressForGeocoding (address) {
+  config.addressesToFix.forEach(function (s) {
     if (address.indexOf(s) > -1) {
       address = address.replace(s, '')
     }
   })
 
-  return address;
+  return address
 }
 
-function isEmptyList(list) {
-  return !list.length;
+function isEmptyList (list) {
+  return !list.length
 }
 
-function insertFirstNode(sentence) {
+function insertFirstNode (sentence) {
   return [{
     complete: sentence,
     all: [ sentence ],
     n: 1
-  }];
+  }]
 }
 
-function hasSingleWord(sentence) {
-  return sentence.indexOf(' ') === -1;
+function hasSingleWord (sentence) {
+  return sentence.indexOf(' ') === -1
 }
 
-function hasWord(sentence, word) {
-  return sentence.indexOf(word) > -1;
+function hasWord (sentence, word) {
+  return sentence.indexOf(word) > -1
 }
 
-function hasMatchingWords(word1, word2) {
+function hasMatchingWords (word1, word2) {
   var commonWordsToIgnore = [
-    'singapore', 'suntec', 'temasek','raffles', 'nus', 'smu', 'learning', 'asia',
+    'singapore', 'suntec', 'temasek', 'raffles', 'nus', 'smu', 'learning', 'asia',
     'hackerspace', 'national', 'innovation',
 
     'one', 'of', 'cafe', 'drive', 'business', 'park', 'city', 'mall', 'central', 'red', 'blvd', 'meeting', 'view', 'ave', 'hotel', 'hall', 'town', 'way', 'lab', 'theatre', 'nearest',
@@ -175,29 +175,29 @@ function hasMatchingWords(word1, word2) {
     'plaza', 'place', 'auditorium', 'marina', 'walk', 'square', 'quay', 'block', 'bay', 'avenue', 'near', 'seminar', 'school',
 
     'pte', 'ltd'
-  ];
+  ]
   var overlapOptions = {
     ignoreCase: true,
     minWordLength: 3,
     ignoreCommonWords: true,
     common: commonWordsToIgnore
-  };
-
-  return overlap(word1, word2, overlapOptions).length > 2;
-}
-
-function addUniqueLocation(locationList, location) {
-  locationList.push(location);
-  return _.uniq(locationList);
-}
-
-function replaceWithLongerString(originalString, newString) {
-  if (newString.length > originalString.length) {
-    originalString = newString;
   }
 
-  return originalString;
+  return overlap(word1, word2, overlapOptions).length > 2
 }
 
-exports.getData = getData;
-exports.addPopularLocations = addPopularLocations;
+function addUniqueLocation (locationList, location) {
+  locationList.push(location)
+  return _.uniq(locationList)
+}
+
+function replaceWithLongerString (originalString, newString) {
+  if (newString.length > originalString.length) {
+    originalString = newString
+  }
+
+  return originalString
+}
+
+exports.getData = getData
+exports.addPopularLocations = addPopularLocations

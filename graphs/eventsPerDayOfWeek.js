@@ -1,8 +1,8 @@
-'use strict';
+'use strict'
 
-var moment = require('moment-timezone');
+var moment = require('moment-timezone')
 
-function getData(source) {
+function getData (source) {
   var answer = [
     { day: 'Monday', n: 0 },
     { day: 'Tuesday', n: 0 },
@@ -11,36 +11,36 @@ function getData(source) {
     { day: 'Friday', n: 0 },
     { day: 'Saturday', n: 0 },
     { day: 'Sunday', n: 0 }
-  ];
+  ]
 
-  source.forEach(function(filename) {
-    var data = require('.' + filename);
+  source.forEach(function (filename) {
+    var data = require('.' + filename)
 
-    data.events.forEach(function(ev) {
-      answer = insertEventsByDay(ev, answer);
+    data.events.forEach(function (ev) {
+      answer = insertEventsByDay(ev, answer)
     })
   })
 
-  return answer;
+  return answer
 }
 
-function insertEventsByDay(ev, totalEvents) {
-  var isDayFound = false;
+function insertEventsByDay (ev, totalEvents) {
+  var isDayFound = false
 
-  totalEvents.forEach(function(element) {
+  totalEvents.forEach(function (element) {
     if (!isDayFound && element.day === getDayOfWeek(ev)) {
-      isDayFound = true;
-      element.n += 1;
+      isDayFound = true
+      element.n += 1
     }
   })
 
-  return totalEvents;
+  return totalEvents
 }
 
-function getDayOfWeek(ev) {
-  return moment(ev.formatted_time, 'DD MMM YYYY, ddd, h:mm a').format('dddd');
+function getDayOfWeek (ev) {
+  return moment(ev.formatted_time, 'DD MMM YYYY, ddd, h:mm a').format('dddd')
 }
 
-exports.getDayOfWeek = getDayOfWeek;
-exports.insertEventsByDay = insertEventsByDay;
-exports.getData = getData;
+exports.getDayOfWeek = getDayOfWeek
+exports.insertEventsByDay = insertEventsByDay
+exports.getData = getData
