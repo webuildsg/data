@@ -1,6 +1,6 @@
 module.exports = {
   addressesToFix: [
-    'King George\'s Building',
+    "King George's Building",
     '#23-01, Marina Bay Financial Centre Tower 2, ',
     'Level 14,',
     'Level 21 Auditorium,',

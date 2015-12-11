@@ -1,11 +1,11 @@
-'use strict';
+'use strict'
 
 var expect = require('chai').expect
 var eventPerDurationLib = require('../../graphs/eventsPerDuration')
 
-describe('Events per Duration Lib', function() {
-  describe('#groupByDuration', function() {
-    it('returns by group of hours and more than 10 hours',function() {
+describe('Events per Duration Lib', function () {
+  describe('#groupByDuration', function () {
+    it('returns by group of hours and more than 10 hours', function () {
       var input = [
         { n: 470, duration: 2 },
         { n: 36, duration: 1 },
@@ -15,7 +15,7 @@ describe('Events per Duration Lib', function() {
         { n: 1, duration: 105 },
         { n: 1, duration: 35 },
         { n: 4, duration: 8 }
-      ];
+      ]
       var reply = eventPerDurationLib.groupByDuration(input)
 
       expect(reply.length).to.equal(6)
@@ -23,8 +23,8 @@ describe('Events per Duration Lib', function() {
     })
   })
 
-  describe('#setLabelsForDuration', function() {
-    it('returns "duration" as a label for graph', function() {
+  describe('#setLabelsForDuration', function () {
+    it('returns "duration" as a label for graph', function () {
       var input = [
         { n: 36, duration: 1 },
         { n: 470, duration: 2 },
