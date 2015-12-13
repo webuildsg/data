@@ -17,7 +17,7 @@
       var height = 500 - margin.top - margin.bottom
       var parseDate = d3.time.format('%d-%b-%y').parse
       var bisectDate = d3.bisector(function (d) { return d.date }).left
-      var formatCurrency = function (d) {
+      var formatDate = function (d) {
         return d[ type ] + ' ' + type + ' in the week of ' + d.formatted_date
       }
 
@@ -100,7 +100,7 @@
         focus.attr('transform', 'translate(' + x(d.date) + ',' + y(d[ type ]) + ')')
         focus
           .select('text')
-          .text(formatCurrency(d))
+          .text(formatDate(d))
           .attr('class', 'label')
       }
     })
