@@ -5,7 +5,7 @@ var utilsLib = require('../tasks/utils')
 function getData (source) {
   var answer = addByGroupNameAndUrl(source)
 
-  answer = getMoreThan(answer, 9)
+  answer = getMoreThan(answer, 4)
   answer = removeLocationString(answer)
   answer = utilsLib.sortByAlphabet(answer, 'group')
 
