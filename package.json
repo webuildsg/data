@@ -43,7 +43,7 @@
     "start": "http-server ./",
     "status": "notes graphs tasks test views && npm outdated",
     "test": "jshint graphs tasks test public/js && standard tasks/**/*.js graphs/**/*.js public/**/*.js && NODE_ENV=test mocha test --recursive && jsinspect ./tasks ./graphs -t 30 -i",
-    "update": "git pull && npm run build && npm run check && npm t"
+    "update": "git pull && npm run build && npm run check && npm t && npm start"
   },
   "devDependencies": {
     "chai": "^3.4.1",
