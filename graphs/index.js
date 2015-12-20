@@ -4,8 +4,8 @@ var utilsLib = require('../tasks/utils')
 
 var eventSource = utilsLib.listFilePaths('events')
 var reposSource = utilsLib.listFilePaths('repos')
-var eventSource2015 = utilsLib.listFilePaths('events', '2015')
-var reposSource2015 = utilsLib.listFilePaths('repos', '2015')
+var eventSource2015 = utilsLib.listFilePaths('events', {'year': '2015'})
+var reposSource2015 = utilsLib.listFilePaths('repos', {'year': '2015'})
 
 var totalEventsByDuration = utilsLib.getTotalByProperty('events', 'duration')
 var totalEventsByTime = utilsLib.getTotalByProperty('events', 'time')

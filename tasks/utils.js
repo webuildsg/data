@@ -1,13 +1,11 @@
 'use strict'
 
-// common functions
-
 var fs = require('fs')
 var path = require('path')
 var moment = require('moment-timezone')
 var geojson = require('geojson')
 
-function listFilePaths (type, year) {
+function listFilePaths (type, options) {
   var allFiles = fs.readdirSync('./data/' + type + '/v1')
   var jsonFilePaths = []
 
@@ -15,12 +13,12 @@ function listFilePaths (type, year) {
     var filepath = './data/' + type + '/v1/' + file
 
     if (hasFileExt(file, '.json')) {
-      if (!year) {
+      if (!options) {
         jsonFilePaths.push(filepath)
-      }
-
-      if (hasYear(file, year)) {
-        jsonFilePaths.push(filepath)
+      } else {
+        if (hasYear(file, options.year)) {
+          jsonFilePaths.push(filepath)
+        }
       }
     }
   })
