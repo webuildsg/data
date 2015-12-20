@@ -82,8 +82,6 @@
 
       focus.append('text')
         .attr('x', 9)
-        .attr('dx', '-8em')
-        .attr('dy', '1.5em')
 
       svg.append('rect')
         .attr('class', 'overlay')
@@ -101,7 +99,13 @@
         var d = x0 - d0.date > d1.date - x0 ? d1 : d0
 
         focus.attr('transform', 'translate(' + x(d.date) + ',' + y(d[ type ]) + ')')
-        focus.select('text').text(formatDate(d)).attr('class', 'label')
+        focus.select('text')
+          .text(formatDate(d))
+          .attr('class', 'label')
+          .attr('dx', function () {
+            return i / data.length > 0.5 ? '-17em' : '-1em'
+          })
+          .attr('dy', '1.5em')
       }
     })
   })
