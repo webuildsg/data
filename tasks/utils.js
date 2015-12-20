@@ -16,7 +16,7 @@ function listFilePaths (type, options) {
       if (!options) {
         jsonFilePaths.push(filepath)
       } else {
-        if (hasYear(file, options.year)) {
+        if (options.year && hasYear(file, options.year)) {
           jsonFilePaths.push(filepath)
         }
       }

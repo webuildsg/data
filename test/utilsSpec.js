@@ -5,17 +5,29 @@ var utilsLib = require('../tasks/utils')
 
 describe('Utils', function () {
   describe('#listFilePaths', function () {
-    describe('when the data is events', function () {
-      it('returns a list of all .json files', function () {
-        expect(utilsLib.listFilePaths('events')[0]).to.contain('.json')
-        expect(utilsLib.listFilePaths('events')).to.be.instanceof(Array)
+    describe('when no options are provided', function() {
+      describe('when the data is events', function () {
+        it('returns a list of all .json files', function () {
+          expect(utilsLib.listFilePaths('events')[0]).to.contain('.json')
+          expect(utilsLib.listFilePaths('events')).to.be.instanceof(Array)
+        })
+      })
+
+      describe('when the data is repos', function () {
+        it('returns a list of all .json files', function () {
+          expect(utilsLib.listFilePaths('repos')[0]).to.contain('.json')
+          expect(utilsLib.listFilePaths('repos')).to.be.instanceof(Array)
+        })
       })
     })
 
-    describe('when the data is repos', function () {
-      it('returns a list of all .json files', function () {
-        expect(utilsLib.listFilePaths('repos')[0]).to.contain('.json')
-        expect(utilsLib.listFilePaths('repos')).to.be.instanceof(Array)
+    describe('when weeks option is given', function () {
+      describe('when the data is events', function() {
+        it('returns a list of .json files in the last n weeks')
+      })
+
+      describe('when the data is repos', function() {
+        it('returns a list of .json files in the last n weeks')
       })
     })
   })
