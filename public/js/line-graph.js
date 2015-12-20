@@ -24,6 +24,10 @@
       var x = d3.time.scale().range([0, width])
       var y = d3.scale.linear().range([height, 0])
       var xAxis = d3.svg.axis().scale(x).orient('bottom')
+        .tickFormat(function (d) {
+          console.log(d)
+          return d.toString().substring(4, 7) + '\'' + d.toString().substring(13, 15)
+        })
       var yAxis = d3.svg.axis().scale(y).orient('left')
 
       var line = d3.svg.line()
