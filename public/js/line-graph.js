@@ -25,7 +25,6 @@
       var y = d3.scale.linear().range([height, 0])
       var xAxis = d3.svg.axis().scale(x).orient('bottom')
         .tickFormat(function (d) {
-          console.log(d)
           return d.toString().substring(4, 7) + '\'' + d.toString().substring(13, 15)
         })
       var yAxis = d3.svg.axis().scale(y).orient('left')
@@ -102,10 +101,7 @@
         var d = x0 - d0.date > d1.date - x0 ? d1 : d0
 
         focus.attr('transform', 'translate(' + x(d.date) + ',' + y(d[ type ]) + ')')
-        focus
-          .select('text')
-          .text(formatDate(d))
-          .attr('class', 'label')
+        focus.select('text').text(formatDate(d)).attr('class', 'label')
       }
     })
   })
