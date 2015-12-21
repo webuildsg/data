@@ -19,11 +19,22 @@ function listFilePaths (type, options) {
         if (options.year && hasYear(file, options.year)) {
           jsonFilePaths.push(filepath)
         }
+
+        if (options.monthsAgo && isWithinMonths(file, options.monthsAgo)) {
+          jsonFilePaths.push(filepath)
+        }
       }
     }
   })
 
   return jsonFilePaths
+}
+
+function isWithinMonths (filename, num) {
+  var re = /\d{4}_\d{2}_\d{2}/ // YYYY_MM_DD
+  var compareDate = filename.match(re)[ 0 ]
+
+  return Math.abs(moment(compareDate, 'YYYY_MM_DD').diff(new Date(), 'months')) < num
 }
 
 function hasYear (file, year) {
@@ -148,8 +159,6 @@ function sortByNumber (array, property) {
     return 0
   })
 }
-
-listFilePaths('repos', '2014')
 
 exports.listFilePaths = listFilePaths
 exports.publishData = publishData
