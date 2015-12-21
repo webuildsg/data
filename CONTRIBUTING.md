@@ -1,8 +1,8 @@
-#Contribute to data.webuild.sg
+# Contribute to data.webuild.sg
 
 :+1::tada: First off, thanks for taking the time to contribute! :tada::+1:
 
-##general
+## general
 
 1. Fork this project and install the packages with `npm i`
 - Create a new feature/patch branch
@@ -12,7 +12,7 @@
 - Pull request using the new feature/patch branch
 - Ensure the [Travis build passes](https://travis-ci.org/webuildsg/data)
 
-##add another graph
+## add another graph
 
 1. all required data in `*.json` format are in the `data` folder
 - write code to create a `json` data that will plot the graph in the folder `graphs`
@@ -24,7 +24,7 @@
 - amend the view file to display the graph in file `views/index.jade`
 - run `npm start` to view the website with the graph
 
-##OPEN Open source project
+## OPEN Open source project
 
 This project is an [OPEN Open source project](http://openopensource.org/).
 
