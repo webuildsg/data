@@ -5,7 +5,7 @@ var utilsLib = require('../tasks/utils')
 
 describe('Utils', function () {
   describe('#listFilePaths', function () {
-    describe('when no options are provided', function() {
+    describe('when no options are provided', function () {
       describe('when the data is events', function () {
         it('returns a list of all .json files', function () {
           expect(utilsLib.listFilePaths('events')[0]).to.contain('.json')
@@ -22,11 +22,11 @@ describe('Utils', function () {
     })
 
     describe('when weeks option is given', function () {
-      describe('when the data is events', function() {
+      describe('when the data is events', function () {
         it('returns a list of .json files in the last n weeks')
       })
 
-      describe('when the data is repos', function() {
+      describe('when the data is repos', function () {
         it('returns a list of .json files in the last n weeks')
       })
     })
