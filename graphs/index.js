@@ -2,13 +2,20 @@
 
 var utilsLib = require('../tasks/utils')
 
-var eventSource = utilsLib.listFilePaths('events')
-var reposSource = utilsLib.listFilePaths('repos')
-var eventSource2015 = utilsLib.listFilePaths('events', {'year': '2015'})
-var reposSource2015 = utilsLib.listFilePaths('repos', {'year': '2015'})
+var options = { 'monthsAgo': 12 }
+var year = { 'year': '2015' }
+var events = 'events'
+var repos = 'repos'
 
-var totalEventsByDuration = utilsLib.getTotalByProperty('events', 'duration')
-var totalEventsByTime = utilsLib.getTotalByProperty('events', 'time')
+var eventSourceAll = utilsLib.listFilePaths(events)
+var reposSourceAll = utilsLib.listFilePaths(repos)
+var eventSourcePast12Months = utilsLib.listFilePaths(events, options)
+var reposSourcePast12Months = utilsLib.listFilePaths(repos, options)
+var eventSource2015 = utilsLib.listFilePaths(events, year)
+var reposSource2015 = utilsLib.listFilePaths(repos, year)
+
+var totalEventsByDuration = utilsLib.getTotalByProperty(events, 'duration')
+var totalEventsByTime = utilsLib.getTotalByProperty(events, 'time')
 
 var eventsPerDayOfWeekLib = require('./eventsPerDayOfWeek')
 var eventsPerDurationLib = require('./eventsPerDuration')
@@ -24,18 +31,18 @@ var reposUpdateActivePerProgrammingLib = require('./reposUpdateActivitiesPerProg
 
 var overviewLib = require('./overview')
 
-utilsLib.publishData('events-per-day-of-week', eventsPerDayOfWeekLib.getData(eventSource))
+utilsLib.publishData('events-per-week', eventsPerWeekLib.getData(eventSourceAll))
+utilsLib.publishData('events-per-day-of-week', eventsPerDayOfWeekLib.getData(eventSourcePast12Months))
+utilsLib.publishData('events-per-group', eventsPerGroupLib.getData(eventSourcePast12Months))
 utilsLib.publishData('events-per-duration', eventsPerDurationLib.getData(totalEventsByDuration))
-utilsLib.publishData('events-per-group', eventsPerGroupLib.getData(eventSource))
 utilsLib.publishData('events-per-time-of-day', eventsPerTimeOfDayLib.getData(totalEventsByTime))
-utilsLib.publishData('events-per-week', eventsPerWeekLib.getData(eventSource))
 
-utilsLib.publishData('repos-per-week', reposPerWeekLib.getData(reposSource))
-utilsLib.publishData('repos-most-active', reposMostActiveLib.getData(reposSource))
-utilsLib.publishData('repos-per-programming-language', reposPerProgrammingLib.getData(reposSource))
-utilsLib.publishData('repos-update-activities-per-programming', reposUpdateActivePerProgrammingLib.getData(reposSource))
+utilsLib.publishData('repos-per-week', reposPerWeekLib.getData(reposSourceAll))
+utilsLib.publishData('repos-most-active', reposMostActiveLib.getData(reposSourcePast12Months))
+utilsLib.publishData('repos-per-programming-language', reposPerProgrammingLib.getData(reposSourcePast12Months))
+utilsLib.publishData('repos-update-activities-per-programming', reposUpdateActivePerProgrammingLib.getData(reposSourcePast12Months))
 
-eventsPerLocationLib.getData(eventSource, function (error, data) {
+eventsPerLocationLib.getData(eventSourcePast12Months, function (error, data) {
   if (!error) {
     utilsLib.publishData('events-per-location', data)
     utilsLib.publishGeojson('events-per-location', data)
