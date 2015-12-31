@@ -1,12 +1,16 @@
 'use strict'
 
-function getData (reposSource, eventSource) {
+function getData (options) {
   return [
     {
-      total_updates_for_repos: getTotalUpdatesForRepos(reposSource),
-      total_uniq_repos_updated: getTotalUniqRepos(reposSource),
-      total_events_held: getTotalEvents(eventSource),
-      total_user_groups_held_events: getTotalGroups(eventSource)
+      total_updates_for_repos: getTotalUpdatesForRepos(options.repos[ '2015' ]),
+      total_uniq_repos_updated: getTotalUniqRepos(options.repos[ '2015' ]),
+      total_events_held: getTotalEvents(options.events[ '2015' ]),
+      total_user_groups_held_events: getTotalGroups(options.events[ '2015' ]),
+      total_updates_for_repos_2016: getTotalUpdatesForRepos(options.repos[ '2016' ]),
+      total_uniq_repos_updated_2016: getTotalUniqRepos(options.repos[ '2016' ]),
+      total_events_held_2016: getTotalEvents(options.events[ '2016' ]),
+      total_user_groups_held_events_2016: getTotalGroups(options.events[ '2016' ])
     }
   ]
 }

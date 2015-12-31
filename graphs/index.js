@@ -13,6 +13,8 @@ var eventSourcePast12Months = utilsLib.listFilePaths(events, options)
 var reposSourcePast12Months = utilsLib.listFilePaths(repos, options)
 var eventSource2015 = utilsLib.listFilePaths(events, year)
 var reposSource2015 = utilsLib.listFilePaths(repos, year)
+var eventSource2016 = utilsLib.listFilePaths(events, { 'year': '2016' })
+var reposSource2016 = utilsLib.listFilePaths(repos, { 'year': '2016' })
 
 var totalEventsByDuration = utilsLib.getTotalByProperty(events, 'duration')
 var totalEventsByTime = utilsLib.getTotalByProperty(events, 'time')
@@ -49,4 +51,15 @@ eventsPerLocationLib.getData(eventSourcePast12Months, function (error, data) {
   }
 })
 
-utilsLib.publishData('overview', overviewLib.getData(reposSource2015, eventSource2015))
+utilsLib.publishData('overview', overviewLib.getData(
+  {
+    repos: {
+      '2015': reposSource2015,
+      '2016': reposSource2016
+    },
+    events: {
+      '2015': eventSource2015,
+      '2016': eventSource2016
+    }
+  })
+)
