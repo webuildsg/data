@@ -1,3 +1,5 @@
+'use strict'
+
 module.exports = {
   addressesToFix: [
     "King George's Building",
