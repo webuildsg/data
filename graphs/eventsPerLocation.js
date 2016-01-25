@@ -126,12 +126,19 @@ function getLatLong (list, callback) {
 }
 
 function fixAddressForGeocoding (address) {
-  config.addressesToFix.forEach(function (s) {
+  config.addressesToFixByRemoving.forEach(function (s) {
     if (address.indexOf(s) > -1) {
       address = address.replace(s, '')
     }
   })
 
+  config.addressesToFixByAdding.forEach(function (s) {
+    if (s.indexOf(address) > -1) {
+      address = s
+    }
+  })
+
+  console.log(address)
   return address
 }
 
