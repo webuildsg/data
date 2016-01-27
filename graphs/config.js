@@ -8,9 +8,9 @@ module.exports = {
     'Level 21 Auditorium,',
     '#09-01 Suntec Tower Five, 038985 Nearest Mrt:Promenade(Yellow Line),',
     'TradeGecko Office,',
+    'Akamai office, 1 Raffles Place, #16-61,',
     'Lowercase,',
-    'Hive@Sandcrawler, ',
-    'Akamai office, 1 Raffles Place, #16-61, '
+    'Hive@Sandcrawler, '
   ],
   addressesToFixByAdding: [
     'ArtScience Museum 6 Bayfront Ave Singapore 018974'
