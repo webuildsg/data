@@ -25,6 +25,7 @@ var eventsPerGroupLib = require('./eventsPerGroup')
 var eventsPerLocationLib = require('./eventsPerLocation')
 var eventsPerTimeOfDayLib = require('./eventsPerTimeOfDay')
 var eventsPerWeekLib = require('./eventsPerWeek')
+var eventsPerWeekOfMonthLib = require('./eventsPerWeekOfMonth')
 
 var reposPerWeekLib = require('./reposPerWeek')
 var reposMostActiveLib = require('./reposMostActive')
@@ -38,6 +39,7 @@ utilsLib.publishData('events-per-day-of-week', eventsPerDayOfWeekLib.getData(eve
 utilsLib.publishData('events-per-group', eventsPerGroupLib.getData(eventSourcePast12Months))
 utilsLib.publishData('events-per-duration', eventsPerDurationLib.getData(totalEventsByDuration))
 utilsLib.publishData('events-per-time-of-day', eventsPerTimeOfDayLib.getData(totalEventsByTime))
+utilsLib.publishData('events-per-week-of-month', eventsPerWeekOfMonthLib.getData(eventSourcePast12Months))
 
 utilsLib.publishData('repos-per-week', reposPerWeekLib.getData(reposSourceAll))
 utilsLib.publishData('repos-most-active', reposMostActiveLib.getData(reposSourcePast12Months))

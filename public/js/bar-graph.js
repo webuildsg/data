@@ -42,6 +42,7 @@
     'repos-update-activities-per-programming',
     'events-per-group',
     'events-per-day-of-week',
+    'events-per-week-of-month',
     'events-per-duration',
     'events-per-time-of-day',
     'repos-most-active'
@@ -65,6 +66,8 @@
         attr = 'time'
       } else if (type === 'repos-most-active') {
         attr = 'name'
+      } else if (type === 'events-per-week-of-month') {
+        attr = 'week'
       }
 
       drawGraph(type, data, attr)
