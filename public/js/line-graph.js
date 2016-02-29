@@ -34,8 +34,7 @@
         .y(function (d) { return y(d[ type ]) })
 
       var svg = d3.select('#' + type + '-per-week').append('svg')
-        .attr('width', width + margin.left + margin.right)
-        .attr('height', height + margin.top + margin.bottom)
+        .attr('viewBox', '0 0 ' + (width + margin.left + margin.right) + ' ' + (height + margin.top + margin.bottom))
         .append('g')
         .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
 
