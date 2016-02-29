@@ -9,7 +9,7 @@
 ## install
 
 1. clone this repository: `git clone git@github.com:webuildsg/data.git`
-- install all the required packages with `npm i -g http-server && npm i`
+- install all the required packages with `npm i`
 - start the website with `npm start`
 - run all tests and linting with `npm test`
 - build `html` file from `*.jade` templates with `npm build:html`
