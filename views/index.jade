@@ -5,11 +5,10 @@ html(lang='en')
     //if lt IE 9
       p.chromeframe Your browser is <em>ancient!</em> <a href='http://browsehappy.com/'>Upgrade to a cool new browser</a> to experience this site!
     div.wrapper
-      include ./partials/header.jade
-
-      <input class="search" id="search" placeholder="search data"/>
-
+      .starter
+        include ./partials/header.jade
       .container
+        <input class="search" id="search" placeholder="search data"/>
         include ./partials/graph-list.jade
         include ./partials/overview.jade
 
