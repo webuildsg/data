@@ -11,7 +11,8 @@ module.exports = {
     'Akamai Singapore office, 1 Raffles Place, #16-61,',
     'Lowercase,',
     'Hive@Sandcrawler, ',
-    'Sandcrawler'
+    'Sandcrawler',
+    '#09-01 Suntec Tower Five, '
   ],
   addressesToFixByAdding: [
     'ArtScience Museum 6 Bayfront Ave Singapore 018974',
