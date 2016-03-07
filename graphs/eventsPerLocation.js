@@ -127,13 +127,13 @@ function getLatLong (list, callback) {
 
 function fixAddressForGeocoding (address) {
   config.addressesToFixByRemoving.forEach(function (s) {
-    if (address.indexOf(s) > -1) {
+    if (address.includes(s)) {
       address = address.replace(s, '')
     }
   })
 
   config.addressesToFixByAdding.forEach(function (s) {
-    if (s.indexOf(address) > -1) {
+    if (s.includes(address)) {
       address = s
     }
   })

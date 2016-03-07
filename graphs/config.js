@@ -13,6 +13,7 @@ module.exports = {
     'Hive@Sandcrawler, '
   ],
   addressesToFixByAdding: [
-    'ArtScience Museum 6 Bayfront Ave Singapore 018974'
+    'ArtScience Museum 6 Bayfront Ave Singapore 018974',
+    'Medical Alumni Association 2 College Road, Singapore 169850'
   ]
 }
