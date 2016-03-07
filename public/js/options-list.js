@@ -16,7 +16,7 @@
     request.send()
   }
 
-  function displayReposByLanguage(lang) {
+  function displayReposByLanguage (lang) {
     if (!lang) {
       return
     }
@@ -25,6 +25,7 @@
 
     window.location.hash = language
     repoList.innerHTML = ''
+    document.getElementById('language-' + language).children[0].checked = true
 
     reposPerProgrammingLanguageList.forEach(function (r) {
       if (r.language.toLowerCase() === language) {
@@ -44,6 +45,10 @@
       displayReposByLanguage(window.location.hash)
     }
   })
+
+  window.onhashchange = function () {
+    displayReposByLanguage(window.location.hash)
+  }
 
   document.addEventListener('click', function (d) {
     displayReposByLanguage(d.target.id.replace('language-', ''))
