@@ -10,7 +10,8 @@ module.exports = {
     'TradeGecko Office,',
     'Akamai Singapore office, 1 Raffles Place, #16-61,',
     'Lowercase,',
-    'Hive@Sandcrawler, '
+    'Hive@Sandcrawler, ',
+    'Sandcrawler'
   ],
   addressesToFixByAdding: [
     'ArtScience Museum 6 Bayfront Ave Singapore 018974',
