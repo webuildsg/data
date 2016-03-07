@@ -28,10 +28,11 @@ function addByGroupNameAndUrl (source) {
         answer.push({
           group: attribute,
           n: 1,
-          url: ev.group_url
+          url: ev.group_url,
+          formatted_time: ev.formatted_time
         })
       } else {
-        answer = increaseCountOfGraph(answer, attribute)
+        answer = increaseCountOfGraph(answer, attribute, ev.formatted_time)
       }
     })
   })
@@ -43,10 +44,11 @@ function groupNotInList (groups, attribute) {
   return groups.indexOf(attribute) < 0 && attribute
 }
 
-function increaseCountOfGraph (answer, attribute) {
+function increaseCountOfGraph (answer, attribute, formattedTime) {
   answer.forEach(function (a) {
     if (a.group === attribute) {
       a.n += 1
+      a.formatted_time = formattedTime
     }
   })
 

@@ -36,6 +36,13 @@
       .text(function (d) {
         return d.n
       })
+
+    bars
+      .append('div')
+      .classed('graph-hover', true)
+      .text(function (d) {
+        return 'last updated on ' + d.formatted_time
+      })
   }
 
   [
