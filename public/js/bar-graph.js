@@ -37,12 +37,14 @@
         return d.n
       })
 
-    bars
-      .append('div')
-      .classed('graph-hover', true)
-      .text(function (d) {
-        return 'last updated on ' + d.formatted_time
-      })
+    if (data[0].formatted_time) {
+      bars
+        .append('div')
+        .classed('graph-hover', true)
+        .text(function (d) {
+          return 'last updated on ' + d.formatted_time
+        })
+    }
   }
 
   [
