@@ -49,18 +49,16 @@ function groupLocations (eachData, locationList) {
         found = true
         eachLocation.n += 1
         eachLocation.groups.push(userGroup)
-      } else {
-        if (hasMatchingWords(eachLocation.complete, location)) {
-          found = true
-          eachLocation.n += 1
-          eachLocation.all = addUniqueLocation(eachLocation.all, location)
-          eachLocation.complete = replaceWithLongerString(eachLocation.complete, location)
+      } else if (hasMatchingWords(eachLocation.complete, location)) {
+        found = true
+        eachLocation.n += 1
+        eachLocation.all = addUniqueLocation(eachLocation.all, location)
+        eachLocation.complete = replaceWithLongerString(eachLocation.complete, location)
 
-          if (!eachLocation.groups) {
-            eachLocation.groups = [ userGroup ]
-          } else {
-            eachLocation.groups.push(userGroup)
-          }
+        if (!eachLocation.groups) {
+          eachLocation.groups = [ userGroup ]
+        } else {
+          eachLocation.groups.push(userGroup)
         }
       }
 
