@@ -55,7 +55,12 @@ function groupLocations (eachData, locationList) {
           eachLocation.n += 1
           eachLocation.all = addUniqueLocation(eachLocation.all, location)
           eachLocation.complete = replaceWithLongerString(eachLocation.complete, location)
-          eachLocation.groups.push(userGroup)
+
+          if (!eachLocation.groups) {
+            eachLocation.groups = [ userGroup ]
+          } else {
+            eachLocation.groups.push(userGroup)
+          }
         }
       }
 
