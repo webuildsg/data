@@ -19,6 +19,7 @@ module.exports = {
   ],
   addressesToFixByAdding: [
     'ArtScience Museum 6 Bayfront Ave Singapore 018974',
-    'Medical Alumni Association 2 College Road, Singapore 169850'
+    'Medical Alumni Association 2 College Road, Singapore 169850',
+    'General Assembly Singapore, The Working Capitol, 1 Keong Saik Road, Level 3, Singapore 089101 (Turn left on the side lane beside Lollapalooza)'
   ]
 }
