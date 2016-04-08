@@ -1,6 +1,7 @@
 'use strict'
 
 var utilsLib = require('./utils')
+var fs = require('fs')
 
 function metaNode (data) {
   if (!data.meta) {
@@ -72,7 +73,8 @@ function hasNoSingleDataPerDay (type) {
     currDay = file.substr(start, 10)
 
     if (prevDay === currDay) {
-      console.log(file + ' has duplicate data for this day')
+      console.log(file + ' has duplicate data for this day - deleted file!')
+      fs.unlink(file)
       hasDuplicate++
     }
 
