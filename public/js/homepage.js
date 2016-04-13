@@ -31,7 +31,7 @@
   callRoute({ url: '/public/data/overview.json' }, function (list) {
     var terms = [ 'repos', 'updates', 'events', 'groups' ]
 
-    terms.forEach(function(eachTerm) {
+    terms.forEach(function (eachTerm) {
       var data2015 = list['total_' + eachTerm]['2015']
       var data2016 = list['total_' + eachTerm]['2016']
       var pastData = document.getElementById('total-' + eachTerm + '-2015')
