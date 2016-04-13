@@ -28,20 +28,21 @@
     })
   }
 
-  // fill in overview numbers
-  callRoute({
-    url: '/public/data/overview.json'
-  }, function (list) {
-    var overviewNumbers = list[ 0 ]
+  callRoute({ url: '/public/data/overview.json' }, function (list) {
+    var terms = [ 'repos', 'updates', 'events', 'groups' ]
 
-    document.getElementById('total-repos-2015').innerHTML = overviewNumbers.total_uniq_repos_updated
-    document.getElementById('total-updates-2015').innerHTML = overviewNumbers.total_updates_for_repos
-    document.getElementById('total-events-2015').innerHTML = overviewNumbers.total_events_held
-    document.getElementById('total-groups-2015').innerHTML = overviewNumbers.total_user_groups_held_events
+    terms.forEach(function(eachTerm) {
+      var data2015 = list['total_' + eachTerm]['2015']
+      var data2016 = list['total_' + eachTerm]['2016']
+      var pastData = document.getElementById('total-' + eachTerm + '-2015')
+      var presentData = document.getElementById('total-' + eachTerm + '-2016')
 
-    document.getElementById('total-repos-2016').innerHTML = overviewNumbers.total_uniq_repos_updated_2016
-    document.getElementById('total-updates-2016').innerHTML = overviewNumbers.total_updates_for_repos_2016
-    document.getElementById('total-events-2016').innerHTML = overviewNumbers.total_events_held_2016
-    document.getElementById('total-groups-2016').innerHTML = overviewNumbers.total_user_groups_held_events_2016
+      pastData.innerHTML = data2015
+      presentData.innerHTML = data2016
+
+      if (data2016 > data2015) {
+        presentData.parentNode.style.background = '#f8f4da'
+      }
+    })
   })
 })()

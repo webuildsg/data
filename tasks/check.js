@@ -41,6 +41,7 @@ function hasEachNode (data, type) {
 
 function hasNodes (data, type) {
   if (!data[ type ]) {
+    console.log('here!')
     return false
   }
 
@@ -52,6 +53,7 @@ function hasNodes (data, type) {
 
   data[ type ].forEach(function (ev) {
     if (!hasEachNode(ev, type)) {
+      console.log(ev.name, type)
       faultCount++
     }
   })

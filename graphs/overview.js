@@ -1,18 +1,24 @@
 'use strict'
 
 function getData (options) {
-  return [
-    {
-      total_updates_for_repos: getTotalUpdatesForRepos(options.repos[ '2015' ]),
-      total_uniq_repos_updated: getTotalUniqRepos(options.repos[ '2015' ]),
-      total_events_held: getTotalEvents(options.events[ '2015' ]),
-      total_user_groups_held_events: getTotalGroups(options.events[ '2015' ]),
-      total_updates_for_repos_2016: getTotalUpdatesForRepos(options.repos[ '2016' ]),
-      total_uniq_repos_updated_2016: getTotalUniqRepos(options.repos[ '2016' ]),
-      total_events_held_2016: getTotalEvents(options.events[ '2016' ]),
-      total_user_groups_held_events_2016: getTotalGroups(options.events[ '2016' ])
+  return {
+    'total_updates': {
+      '2015': getTotalUpdatesForRepos(options.repos[ '2015' ]),
+      '2016': getTotalUpdatesForRepos(options.repos[ '2016' ])
+    },
+    'total_repos': {
+      '2015': getTotalUniqRepos(options.repos[ '2015' ]),
+      '2016': getTotalUniqRepos(options.repos[ '2016' ])
+    },
+    'total_events': {
+      '2015': getTotalEvents(options.events[ '2015' ]),
+      '2016': getTotalEvents(options.events[ '2016' ])
+    },
+    'total_groups': {
+      '2015': getTotalGroups(options.events[ '2015' ]),
+      '2016': getTotalGroups(options.events[ '2016' ])
     }
-  ]
+  }
 }
 
 function getTotalUpdatesForRepos (reposSource) {

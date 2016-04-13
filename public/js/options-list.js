@@ -1,4 +1,5 @@
 /* global XMLHttpRequest */
+/* global XMLHttpRequest */
 ;(function () {
   'use strict'
 
