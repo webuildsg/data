@@ -3,9 +3,9 @@
   'use strict'
 
   function drawGraph (type, data, attr) {
-    var max_n = 0
+    var maxN = 0
     data.forEach(function (d) {
-      max_n = Math.max(d.n, max_n)
+      maxN = Math.max(d.n, maxN)
     })
 
     var graph = d3.select('#' + type)
@@ -31,7 +31,7 @@
       .append('div')
       .classed('graph-bar', true)
       .style('width', function (d) {
-        return (d.n / max_n * 70) + '%'
+        return (d.n / maxN * 70) + '%'
       })
       .text(function (d) {
         return d.n
