@@ -1,17 +1,17 @@
 doctype
 html(lang='en')
-  include ./partials/head.jade
+  include ./partials/head.pug
   body
     //if lt IE 9
       p.chromeframe Your browser is <em>ancient!</em> <a href='http://browsehappy.com/'>Upgrade to a cool new browser</a> to experience this site!
     div.wrapper
       .starter
-        include ./partials/header.jade
+        include ./partials/header.pug
       .container
         <input class="search" id="search" placeholder="search data"/>
-        include ./partials/graph-list.jade
-        include ./partials/overview.jade
+        include ./partials/graph-list.pug
+        include ./partials/overview.pug
 
-      include ./partials/footer.jade
+      include ./partials/footer.pug
     script(src="/public/js/homepage.js")
     script(src="/public/js/common.js")

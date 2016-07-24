@@ -12,7 +12,7 @@
 - install all the required packages with `npm i`
 - start the website with `npm start`
 - run all tests and linting with `npm test`
-- build `html` file from `*.jade` templates with `npm run build:html`
+- build `html` file from `*.pug` templates with `npm run build:html`
 - build all `*.json` data to plot graphs with `npm run build:graph`
 - remove all built files with `npm run clean`
 - check that all data snapshot files are in the correct format with `npm run check`

@@ -1,18 +1,18 @@
 doctype
 html(lang='en')
-  include ./../../partials/head.jade
+  include ./../../partials/head.pug
   body
     //if lt IE 9
       p.chromeframe Your browser is <em>ancient!</em> <a href='http://browsehappy.com/'>Upgrade to a cool new browser</a> to experience this site!
     div.wrapper
-      include ./../../partials/header.jade
+      include ./../../partials/header.pug
 
       .container
         .graph-section
           h3 events by time of day
           .graph#events-per-time-of-day
-      include ./../../partials/explain.jade
-      include ./../../partials/footer.jade
+      include ./../../partials/explain.pug
+      include ./../../partials/footer.pug
     script(src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.9/d3.min.js")
     script(src="/public/js/bar-graph.js")
     script(src="/public/js/common.js")

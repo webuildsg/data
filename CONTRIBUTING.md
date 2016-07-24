@@ -20,8 +20,8 @@
 - ensure you write this `json` data in a file under the folder `public/data` so that the frontend can query it
 - run `npm run build` to create this data in folder `public/data/*.json`
 - add the frontend script to create eh graph with `d3js` in folder `public/js`
-- add the link to the scripts in `views/index.jade`
-- amend the view file to display the graph in file `views/index.jade`
+- add the link to the scripts in `views/index.pug`
+- amend the view file to display the graph in file `views/index.pug`
 - run `npm start` to view the website with the graph
 
 ## OPEN Open source project

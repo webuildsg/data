@@ -1,10 +1,10 @@
 var gulp = require('gulp')
-var jade = require('gulp-jade')
-var jadeOptions = {
+var pug = require('gulp-pug')
+var pugOptions = {
   pretty: true
 }
 
 gulp.task('default', function () {
-  gulp.src('./views/index.jade').pipe(jade(jadeOptions)).pipe(gulp.dest('./'))
-  gulp.src('./views/graphs/**/*.jade').pipe(jade(jadeOptions)).pipe(gulp.dest('./dataset'))
+  gulp.src('./views/index.pug').pipe(pug(pugOptions)).pipe(gulp.dest('./'))
+  gulp.src('./views/graphs/**/*.pug').pipe(pug(pugOptions)).pipe(gulp.dest('./dataset'))
 })
