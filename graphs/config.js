@@ -15,7 +15,9 @@ module.exports = {
 
     '#09-01 Suntec Tower Five, 038985 Nearest Mrt:Promenade(Yellow Line),',
     '#09-01 Suntec Tower Five, ',
-    '#07-01 Suntec Tower Five, Nearest Mrt:Promenade(Yellow Line), '
+    '#07-01 Suntec Tower Five, Nearest Mrt:Promenade(Yellow Line), ',
+    '048616',
+    'Tower 2'
   ],
   addressesToFixByAdding: [
     'ArtScience Museum 6 Bayfront Ave Singapore 018974',

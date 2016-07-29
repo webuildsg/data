@@ -26,6 +26,10 @@ A daily scheduler stores the data snapshots for [events](https://github.com/webu
 - folder `data/{type}/v1/{filename}` for version compatibility in case there are api changes in the future
 - `{type}` includes `repos` or `events`
 
+## check
+
+1. if the [map locations](http://data.webuild.sg/dataset/events-per-location/) are wrong, check the address [here](https://google-developers.appspot.com/maps/documentation/javascript/examples/full/geocoding-simple) 
+
 ## contribute
 
 This project is an [OPEN Open source project](http://openopensource.org/).
