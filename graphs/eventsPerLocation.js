@@ -33,7 +33,7 @@ function groupLocations (eachData, locationList) {
   var location = eachData.location
   var userGroup = eachData.group_name
 
-  if (hasSingleWord(location) || hasWord(location, 'TBA')) {
+  if (hasSingleWord(location) || hasWord(location, 'TBA') || hasWord(location, 'Online')) {
     return locationList
   }
 
