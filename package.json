@@ -50,13 +50,13 @@
     "gulp": "3.9.1",
     "gulp-pug": "3.0.4",
     "http-server": "0.9.0",
-    "pug": "2.0.0-beta5",
-    "jshint": "2.9.2",
+    "pug": "2.0.0-beta6",
+    "jshint": "2.9.3",
     "jsinspect": "0.8.0",
     "mocha": "3.0.2",
     "notes": "0.0.4",
-    "standard": "7.1.2",
-    "standard-format": "2.2.2"
+    "standard": "8.0.0",
+    "standard-format": "2.2.3"
   },
   "dependencies": {
     "geocoder": "0.2.2",
