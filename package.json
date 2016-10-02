@@ -53,15 +53,15 @@
     "pug": "2.0.0-beta6",
     "jshint": "2.9.3",
     "jsinspect": "0.8.0",
-    "mocha": "3.0.2",
+    "mocha": "3.1.0",
     "notes": "0.0.4",
-    "standard": "8.0.0",
+    "standard": "8.3.0",
     "standard-format": "2.2.3"
   },
   "dependencies": {
     "geocoder": "0.2.2",
-    "geojson": "0.3.0",
-    "lodash": "4.15.0",
+    "geojson": "0.4.0",
+    "lodash": "4.16.2",
     "moment-timezone": "0.5.5",
     "word-overlap": "2.4.1"
   }
