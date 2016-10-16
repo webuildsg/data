@@ -44,7 +44,7 @@ function groupLocations (eachData, locationList) {
   var found = false
 
   locationList.forEach(function (eachLocation) {
-    if (!found) {
+    if (!found && eachLocation.groups) {
       if (eachLocation.complete === location) {
         found = true
         eachLocation.n += 1
