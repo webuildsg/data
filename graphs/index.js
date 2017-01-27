@@ -3,7 +3,7 @@
 var utilsLib = require('../tasks/utils')
 
 var options = { 'monthsAgo': 12 }
-var year = { 'year': '2015' }
+var year = {}
 var events = 'events'
 var repos = 'repos'
 
@@ -11,10 +11,14 @@ var eventSourceAll = utilsLib.listFilePaths(events)
 var reposSourceAll = utilsLib.listFilePaths(repos)
 var eventSourcePast12Months = utilsLib.listFilePaths(events, options)
 var reposSourcePast12Months = utilsLib.listFilePaths(repos, options)
-var eventSource2015 = utilsLib.listFilePaths(events, year)
-var reposSource2015 = utilsLib.listFilePaths(repos, year)
+
+var eventSource2015 = utilsLib.listFilePaths(events, { 'year': '2015' })
 var eventSource2016 = utilsLib.listFilePaths(events, { 'year': '2016' })
+var eventSource2017 = utilsLib.listFilePaths(events, { 'year': '2017' })
+
+var reposSource2015 = utilsLib.listFilePaths(repos, { 'year': '2015' })
 var reposSource2016 = utilsLib.listFilePaths(repos, { 'year': '2016' })
+var reposSource2017 = utilsLib.listFilePaths(repos, { 'year': '2017' })
 
 var totalEventsByDuration = utilsLib.getTotalByProperty(events, 'duration')
 var totalEventsByTime = utilsLib.getTotalByProperty(events, 'time')
@@ -57,11 +61,13 @@ utilsLib.publishData('overview', overviewLib.getData(
   {
     repos: {
       '2015': reposSource2015,
-      '2016': reposSource2016
+      '2016': reposSource2016,
+      '2017': reposSource2017
     },
     events: {
       '2015': eventSource2015,
-      '2016': eventSource2016
+      '2016': eventSource2016,
+      '2017': eventSource2017
     }
   })
 )

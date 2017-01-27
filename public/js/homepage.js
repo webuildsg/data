@@ -34,13 +34,17 @@
     terms.forEach(function (eachTerm) {
       var data2015 = list['total_' + eachTerm]['2015']
       var data2016 = list['total_' + eachTerm]['2016']
-      var pastData = document.getElementById('total-' + eachTerm + '-2015')
-      var presentData = document.getElementById('total-' + eachTerm + '-2016')
+      var data2017 = list['total_' + eachTerm]['2017']
 
-      pastData.innerHTML = data2015
-      presentData.innerHTML = data2016
+      var dataEl2015 = document.getElementById('total-' + eachTerm + '-2015')
+      var dataEl2016 = document.getElementById('total-' + eachTerm + '-2016')
+      var dataEl2017 = document.getElementById('total-' + eachTerm + '-2017')
 
-      if (data2016 > data2015) {
+      dataEl2015.innerHTML = data2015
+      dataEl2016.innerHTML = data2016
+      dataEl2017.innerHTML = data2017
+
+      if (data2017 > data2016) {
         presentData.parentNode.style.background = '#f8f4da'
       }
     })

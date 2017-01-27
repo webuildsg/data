@@ -4,19 +4,23 @@ function getData (options) {
   return {
     'total_updates': {
       '2015': getTotalUpdatesForRepos(options.repos[ '2015' ]),
-      '2016': getTotalUpdatesForRepos(options.repos[ '2016' ])
+      '2016': getTotalUpdatesForRepos(options.repos[ '2016' ]),
+      '2017': getTotalUpdatesForRepos(options.repos[ '2017' ])
     },
     'total_repos': {
       '2015': getTotalUniqRepos(options.repos[ '2015' ]),
-      '2016': getTotalUniqRepos(options.repos[ '2016' ])
+      '2016': getTotalUniqRepos(options.repos[ '2016' ]),
+      '2017': getTotalUniqRepos(options.repos[ '2017' ])
     },
     'total_events': {
       '2015': getTotalEvents(options.events[ '2015' ]),
-      '2016': getTotalEvents(options.events[ '2016' ])
+      '2016': getTotalEvents(options.events[ '2016' ]),
+      '2017': getTotalEvents(options.events[ '2017' ])
     },
     'total_groups': {
       '2015': getTotalGroups(options.events[ '2015' ]),
-      '2016': getTotalGroups(options.events[ '2016' ])
+      '2016': getTotalGroups(options.events[ '2016' ]),
+      '2017': getTotalGroups(options.events[ '2017' ])
     }
   }
 }
