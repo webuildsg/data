@@ -60,7 +60,7 @@
   },
   "dependencies": {
     "geocoder": "0.2.2",
-    "geojson": "0.4.0",
+    "geojson": "0.4.1",
     "lodash": "4.17.2",
     "moment-timezone": "0.5.11",
     "word-overlap": "2.4.1"
