@@ -50,18 +50,18 @@
     "gulp": "3.9.1",
     "gulp-pug": "3.2.0",
     "http-server": "0.9.0",
-    "pug": "2.0.0-beta8",
+    "pug": "2.0.0-beta11",
     "jshint": "2.9.4",
     "jsinspect": "0.9.0",
     "mocha": "3.2.0",
     "notes": "0.0.4",
-    "standard": "9.0.0-beta.0",
+    "standard": "9.0.0",
     "standard-format": "2.2.4"
   },
   "dependencies": {
     "geocoder": "0.2.2",
-    "geojson": "0.4.0",
-    "lodash": "4.17.3",
+    "geojson": "0.4.1",
+    "lodash": "4.17.4",
     "moment-timezone": "0.5.11",
     "word-overlap": "2.4.1"
   }
