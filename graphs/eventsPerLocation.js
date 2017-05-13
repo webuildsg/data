@@ -20,7 +20,7 @@ function getData (source, callback) {
 
   getLatLong(locationList, function (error, list) {
     if (error) {
-      return callback('Error')
+      return callback(error)
     }
 
     locationList = filterValidLatLong(list)
@@ -117,7 +117,7 @@ function getLatLong (list, callback) {
         progress++
 
         if (errorCount) {
-          return callback('Error!')
+          return callback(error)
         }
 
         if (progress === list.length - 1) {
