@@ -3,7 +3,6 @@
 var utilsLib = require('../tasks/utils')
 
 var options = { 'monthsAgo': 12 }
-var year = {}
 var events = 'events'
 var repos = 'repos'
 
