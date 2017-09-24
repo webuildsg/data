@@ -49,12 +49,12 @@ utilsLib.publishData('repos-most-active', reposMostActiveLib.getData(reposSource
 utilsLib.publishData('repos-per-programming-language', reposPerProgrammingLib.getData(reposSourcePast12Months))
 utilsLib.publishData('repos-update-activities-per-programming', reposUpdateActivePerProgrammingLib.getData(reposSourcePast12Months))
 
-eventsPerLocationLib.getData(eventSourcePast12Months, function (error, data) {
-  if (!error) {
-    utilsLib.publishData('events-per-location', data)
-    utilsLib.publishGeojson('events-per-location', data)
-  }
-})
+// eventsPerLocationLib.getData(eventSourcePast12Months, function (error, data) {
+//   if (!error) {
+//     utilsLib.publishData('events-per-location', data)
+//     utilsLib.publishGeojson('events-per-location', data)
+//   }
+// })
 
 utilsLib.publishData('overview', overviewLib.getData(
   {

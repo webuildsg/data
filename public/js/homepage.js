@@ -45,7 +45,8 @@
       dataEl2017.innerHTML = data2017
 
       if (data2017 > data2016) {
-        data2017.parentNode.style.background = '#f8f4da'
+        console.log(data2017)
+        dataEl2017.parentNode.style.background = '#f8f4da'
       }
     })
   })
