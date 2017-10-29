@@ -42,25 +42,25 @@
     "deploy": "git push origin gh-pages",
     "start": "http-server ./",
     "status": "notes graphs tasks test views && npm outdated",
-    "test": "jshint graphs tasks test public/js && standard tasks/**/*.js graphs/**/*.js public/**/*.js && NODE_ENV=test mocha test --recursive && jsinspect ./tasks ./graphs -t 30 -i",
+    "test": "jshint graphs tasks test public/js && standard tasks/**/*.js graphs/**/*.js public/**/*.js && NODE_ENV=test mocha test --recursive && jsinspect ./tasks -t 30 -i",
     "update": "git pull && npm run build && npm run check && npm t && npm start"
   },
   "devDependencies": {
-    "chai": "3.5.0",
+    "chai": "4.1.2",
     "gulp": "3.9.1",
     "gulp-pug": "3.3.0",
     "http-server": "0.10.0",
-    "pug": "2.0.0-rc.1",
-    "jshint": "2.9.4",
-    "jsinspect": "0.12.4",
-    "mocha": "3.3.0",
+    "pug": "2.0.0-rc.4",
+    "jshint": "2.9.5",
+    "jsinspect": "0.12.7",
+    "mocha": "4.0.1",
     "notes": "0.0.4",
-    "standard": "10.0.2",
+    "standard": "10.0.3",
     "standard-format": "2.2.4"
   },
   "dependencies": {
     "geocoder": "0.2.3",
-    "geojson": "0.4.1",
+    "geojson": "0.5.0",
     "lodash": "4.17.4",
     "moment-timezone": "0.5.13",
     "word-overlap": "2.4.1"
