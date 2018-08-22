@@ -28,7 +28,7 @@
     })
   }
 
-  callRoute({ url: '/public/data/overview.json' }, function (list) {
+  callRoute({ url: '/data/public/data/overview.json' }, function (list) {
     var terms = [ 'repos', 'updates', 'events', 'groups' ]
 
     terms.forEach(function (eachTerm) {
