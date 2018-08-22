@@ -7,7 +7,7 @@
     'repos',
     'events'
   ].forEach(function (type) {
-    d3.json('/public/data/' + type + '-per-week.json', function (error, data) {
+    d3.json('/data/public/data/' + type + '-per-week.json', function (error, data) {
       if (error) {
         console.log(error)
       }
