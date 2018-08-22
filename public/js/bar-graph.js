@@ -56,7 +56,7 @@
     'events-per-time-of-day',
     'repos-most-active'
   ].forEach(function (type) {
-    d3.json('/public/data/' + type + '.json', function (error, data) {
+    d3.json('/data/public/data/' + type + '.json', function (error, data) {
       if (error) {
         console.log(error)
       }
