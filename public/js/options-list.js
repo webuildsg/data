@@ -38,7 +38,7 @@
   }
 
   callRoute({
-    url: '/public/data/repos-per-programming-language.json'
+    url: './public/data/repos-per-programming-language.json'
   }, function (list) {
     reposPerProgrammingLanguageList = list
 
